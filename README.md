@@ -1,16 +1,27 @@
-# React + Vite
+# Word Link
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a word game created using React and Vite.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- JavaScript
 
-## React Compiler
+## Where to play
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This website is yet to be live, but should be soon
 
-## Expanding the ESLint configuration
+## Repo purpose
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This repository is provided here for backup and portfiolo purposes.
+
+## Licence
+
+You can find the licence in LICENCE.txt
+
+Copyright (c) 2026 Julius Williams
+
+All rights reserved.
+
+The source code and website content are not licenced for reuse, modification, or redistribution without explicit permission from the copyright holder.
