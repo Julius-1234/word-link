@@ -1,0 +1,19 @@
+.game-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 10px;
+  button {
+    user-select: none;
+    background: var(--accent);
+    color: var(--accent-colour);
+    padding: 0 5px;
+    border-radius: 3px;
+    &.locked {
+      filter: blur(1px) brightness(50%);
+    }
+    &.unlocked {
+      filter: brightness(50%);
+    }
+  }
+}

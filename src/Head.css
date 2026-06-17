@@ -1,0 +1,18 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.home-nav {
+  display: flex;
+  flex-direction: horizontal;
+}
+
+.logo {
+  width: 100px;
+}
+
+a {
+  margin: 10px;
+}

@@ -1,0 +1,22 @@
+.game-start-word {
+  font-size: 1.2em;
+}
+
+.game-end-word {
+  font-size: 1.2em;
+}
+
+.game-input {
+  background: var(--accent);
+  color: var(--accent-color);
+  margin: 5px 20px;
+  padding: 10px;
+  height: 1em;
+  line-height: 1em;
+}
+
+.game-box {
+  text-align: center;
+  margin-top: 20px;
+  user-select: none;
+}

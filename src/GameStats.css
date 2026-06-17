@@ -1,0 +1,36 @@
+.gameStatBox {
+  width: 100%;
+}
+
+.gameStatTitle {
+  padding: 0 10px;
+}
+
+.gameStatInfo {
+  max-height: 100px;
+  width: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-dark) #ccc;
+  display: flex;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+.gameStatPath {
+  background: var(--accent);
+  color: var(--accent-colour);
+  border-radius: 2px;
+  font-size: 0.7em;
+  text-align: center;
+  min-width: 50px;
+  margin: 5px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.gameStatPathStart,
+.gameStatPathEnd {
+  font-size: 1.2em;
+}
