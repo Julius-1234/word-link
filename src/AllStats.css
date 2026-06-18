@@ -1,0 +1,10 @@
+.boldCell {
+  font-weight: bold;
+}
+
+.allStatsTable {
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+}

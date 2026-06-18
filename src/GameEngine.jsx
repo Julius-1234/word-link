@@ -43,7 +43,7 @@ export default function GameEngine({ children, onMessage }) {
           action.date.getDate(),
         ).getTime();
         const dateKey = dateSeed.toString();
-        newStats.days ??= {};
+        newState.days ??= {};
         newState.days[dateKey] ??= {
           unlockedDifficulties: [difficultyInfo.default],
           games: {},

@@ -10,7 +10,6 @@ export default function GameSelect({
     <div className="game-nav">
       {difficultyInfo.order.map((key, i) => {
         const item = difficultyInfo.difficulties[key];
-        console.log(item);
         let className = "locked";
         if (unlockedDifficulties.includes(key)) className = "unlocked";
         if (difficulty === key) className = "selected";

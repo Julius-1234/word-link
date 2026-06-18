@@ -8,7 +8,7 @@ export default function GameStats({ date }) {
     date.getMonth(),
     date.getDate(),
   ).getTime();
-  const currentDay = stats.days[date.toString()] || {};
+  const currentDay = stats.days?.[date.toString()] || {};
   const games = currentDay.games ? Object.entries(currentDay.games) : [];
 
   return (
@@ -20,17 +20,21 @@ export default function GameStats({ date }) {
           <div className="gameStatBox" key={i}>
             <div className="gameStatTitle">{`${pair[0]} (${paths.length})`}</div>
             <div className="gameStatInfo">
-              {paths.map((path, i) => (
-                <div className="gameStatPath" key={i}>
-                  <div className="gameStatPathStart">{pair[1].start}</div>
-                  {path.map((word, i) => (
-                    <div className="gameStatPathWord" key={i}>
-                      {word}
-                    </div>
-                  ))}
-                  <div className="gameStatPathEnd">{pair[1].end}</div>
-                </div>
-              ))}
+              {paths
+                .sort((a, b) => {
+                  a.length - b.length;
+                })
+                .map((path, i) => (
+                  <div className="gameStatPath" key={i}>
+                    <div className="gameStatPathStart">{pair[1].start}</div>
+                    {path.map((word, i) => (
+                      <div className="gameStatPathWord" key={i}>
+                        {word}
+                      </div>
+                    ))}
+                    <div className="gameStatPathEnd">{pair[1].end}</div>
+                  </div>
+                ))}
             </div>
           </div>
         );
