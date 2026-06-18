@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import Head from "./Head.jsx";
-import Content from "./Content.jsx";
-import GameEngine from "./GameEngine.jsx";
-import Errors from "./Messages.jsx";
+import Head from "../../components/Head/Head.jsx";
+import Content from "../../components/Content/Content.jsx";
+import GameEngine from "../../game/GameEngine.jsx";
+import Errors from "../../components/Messages/Messages.jsx";
 
 export default function Home() {
   const [message, setMessage] = useState({

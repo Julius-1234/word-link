@@ -1,5 +1,5 @@
-import GameStats from "./GameStats";
-import AllStats from "./AllStats";
+import GameStats from "../../components/GameStats/GameStats.jsx";
+import AllStats from "../../components/AllStats/AllStats.jsx";
 import { Link } from "react-router-dom";
 
 import "./MainStats.css";

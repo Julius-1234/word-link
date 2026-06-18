@@ -1,5 +1,5 @@
-import Home from "./Home.jsx";
-import MainStats from "./MainStats.jsx";
+import Home from "./pages/Home/Home.jsx";
+import MainStats from "./pages/MainStats/MainStats.jsx";
 
 import "./App.css";
 import { Route, Routes } from "react-router-dom";

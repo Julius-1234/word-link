@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useGame } from "./GameEngine.jsx";
+import { useGame } from "../../game/GameEngine.jsx";
 
-import GameSelect from "./GameSelect.jsx";
-import Game from "./Game.jsx";
+import GameSelect from "../GameSelect/GameSelect.jsx";
+import Game from "../Game/Game.jsx";
 
 export default function Content() {
   const {

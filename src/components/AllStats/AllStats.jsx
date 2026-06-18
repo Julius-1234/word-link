@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { difficultyInfo } from "./constants.js";
+import { difficultyInfo } from "../../utils/constants.js";
 import "./AllStats.css";
 
 export default function AllStats() {

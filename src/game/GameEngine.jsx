@@ -8,9 +8,9 @@ import {
   useReducer,
 } from "react";
 
-import { maxGuesses, difficultyInfo, changes } from "./constants.js";
+import { maxGuesses, difficultyInfo, changes } from "../utils/constants.js";
 
-import { setSeed, rand, shuffle } from "./randomSeed.js";
+import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
 
 const GameContext = createContext(null);
 export default function GameEngine({ children, onMessage }) {
