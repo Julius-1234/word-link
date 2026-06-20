@@ -15,6 +15,7 @@ export default function Content() {
     unlockedDifficulties,
     difficultyInfo,
     setDifficulty,
+    date,
   } = useGame();
   return (
     <div>
@@ -30,6 +31,7 @@ export default function Content() {
         end={end}
         guess={guess}
         maxGuesses={maxGuesses}
+        date={date}
       />
     </div>
   );

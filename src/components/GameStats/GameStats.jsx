@@ -10,15 +10,23 @@ export default function GameStats({ date }) {
   ).getTime();
   const currentDay = stats.days?.[date.toString()] || {};
   const games = currentDay.games ? Object.entries(currentDay.games) : [];
-
+  let dateString = new Date(date);
+  dateString = `${dateString.getDate()}/${dateString.getMonth() + 1}/${dateString.getFullYear()}`;
   return (
     <div className="gameStats">
+      <b>{dateString}</b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
         if (paths.length === 0) return;
         return (
           <div className="gameStatBox" key={i}>
-            <div className="gameStatTitle">{`${pair[0]} (${paths.length})`}</div>
+            <div className="gameStatTitle">
+              {`${pair[0]} (${paths.length})`}
+              <br />
+              <b>
+                {pair[1].start} &rarr; {pair[1].end}
+              </b>
+            </div>
             <div className="gameStatInfo">
               {paths
                 .sort((a, b) => {

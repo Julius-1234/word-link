@@ -217,6 +217,12 @@ export default function GameEngine({ children, onMessage }) {
           timeStamp: Date.now(),
           type: "message",
         });
+      } else {
+        onMessage({
+          message: "well done!",
+          timeStamp: Date.now(),
+          type: "message",
+        });
       }
     } else {
       allDataDispatch({ type: "addGuess", value: input });
@@ -255,6 +261,7 @@ export default function GameEngine({ children, onMessage }) {
     setDifficulty: (value) => {
       allDataDispatch({ type: "setDifficulty", value });
     },
+    date,
   };
 
   useEffect(() => {

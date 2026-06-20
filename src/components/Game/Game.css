@@ -20,3 +20,16 @@
   margin-top: 20px;
   user-select: none;
 }
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 0 10px;
+  .game-info-select {
+    background: var(--accent);
+    color: var(--accent-color);
+    font-size: 0.8em;
+    border-radius: 3px;
+  }
+}

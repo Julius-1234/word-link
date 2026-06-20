@@ -2,7 +2,7 @@ Copyright (c) 2026 Julius Williams
 
 All rights reserved.
 
-This repository and it's contents are protected by copyright law.
+This repository and its contents are protected by copyright law.
 No part of this repository may be copied, modified, distributed,
 published, sublicenced, or used in any form without prior written
 permission from the copyright holder.
