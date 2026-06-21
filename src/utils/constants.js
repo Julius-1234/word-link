@@ -1,11 +1,29 @@
 export const maxGuesses = 7;
 
+export const archiveStart = new Date("2026-07-29"); // temp
+
 export const difficultyInfo = {
   order: ["easy", "medium", "hard"],
+  beatenNone: "#ff0",
   difficulties: {
-    easy: { steps: 4, seedMult: 1, displayName: "easy" },
-    medium: { steps: 5, seedMult: 2, displayName: "medium" },
-    hard: { steps: 6, seedMult: 3, displayName: "hard" },
+    easy: {
+      steps: 4,
+      seedMult: 1,
+      displayName: "easier",
+      beatenColour: "#f81",
+    },
+    medium: {
+      steps: 5,
+      seedMult: 2,
+      displayName: "normal",
+      beatenColour: "#f00",
+    },
+    hard: {
+      steps: 6,
+      seedMult: 3,
+      displayName: "harder",
+      beatenColour: "#a0f",
+    },
   },
 };
 difficultyInfo.default = difficultyInfo.order[0];

@@ -2,13 +2,14 @@ export default function Credits() {
   return (
     <div className="credits">
       <h3>Credits</h3>
-      All resources are only used internally and are not distributed in any way.
       All resources are used under the terms of their respective licenses.
       <br />
       <br />
       Created by Julius Williams. <br />
       Dedicated to Matthew Williams. <br />
-      <h4>Resources Used</h4>
+      <h4>Resources Used in dictionaries</h4>
+      All of the following resources are only used internally and are not
+      distributed in any way.
       <ul>
         <li>
           Base dictionary:<a href="https://app.aspell.net/create">here</a>
@@ -24,6 +25,7 @@ export default function Credits() {
         </li>
         <li>Wordnet (as python module)</li>
       </ul>
+      Fonts are from Google Fonts <br />
       This website was created using React js + Vite. <br />
       This website is only in beta and may contain bugs. Sorry.
       <br />

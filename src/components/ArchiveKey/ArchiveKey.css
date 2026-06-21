@@ -1,0 +1,11 @@
+.difficultyKeyColour {
+  width: 20px;
+  height: 20px;
+}
+
+.difficultyKey {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+}

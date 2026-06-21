@@ -38,7 +38,11 @@ export default function AllStats() {
   return (
     <table className="allStatsTable">
       <tbody>
-        {getDataRow("", (item) => item, true)}
+        {getDataRow(
+          "",
+          (item) => difficultyInfo.difficulties[item].displayName,
+          true,
+        )}
         {getDataRow(
           "days with paths",
           (item) => prossesedInfo.difficultyStats[item].daysWithWins.length,

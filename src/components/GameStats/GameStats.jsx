@@ -1,4 +1,5 @@
 import "./GameStats.css";
+import { difficultyInfo } from "../../utils/constants.js";
 
 export default function GameStats({ date }) {
   const stats = JSON.parse(localStorage.getItem("data")) || {};
@@ -21,7 +22,7 @@ export default function GameStats({ date }) {
         return (
           <div className="gameStatBox" key={i}>
             <div className="gameStatTitle">
-              {`${pair[0]} (${paths.length})`}
+              {`${difficultyInfo.difficulties[pair[0]].displayName} (${paths.length})`}
               <br />
               <b>
                 {pair[1].start} &rarr; {pair[1].end}
