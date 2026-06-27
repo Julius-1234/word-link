@@ -5,7 +5,7 @@ import ArchiveKey from "../../components/ArchiveKey/ArchiveKey.jsx";
 export default function Archive() {
   return (
     <>
-      <div className="archiveTitle">Archive</div>
+      <div className="archive-title">Archive</div>
       <ArchiveKey />
       <ArchiveCalendar />
     </>

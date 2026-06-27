@@ -1,8 +1,8 @@
-.boldCell {
+.bold-cell {
   font-weight: bold;
 }
 
-.allStatsTable {
+.all-stats-table {
   td {
     padding: 10px;
     text-align: center;

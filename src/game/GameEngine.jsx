@@ -170,9 +170,9 @@ export default function GameEngine({ children, onMessage }) {
           value: `${allData.currentGame.guess || ""}${key}`,
         });
     };
-    document.addEventListener("keydown", keyDownHandler);
+    window.addEventListener("keydown", keyDownHandler);
     return () => {
-      document.removeEventListener("keydown", keyDownHandler);
+      window.removeEventListener("keydown", keyDownHandler);
     };
   }, [resources, allData.currentGame]);
 

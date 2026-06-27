@@ -24,10 +24,10 @@ export default function AllStats() {
   const getDataRow = (title, func, titleRow = false) => {
     return (
       <tr>
-        <td className="boldCell">{title}</td>
+        <td className="bold-cell">{title}</td>
         {difficulties.map((item, i) => {
           return (
-            <td className={titleRow ? "boldCell" : undefined} key={i}>
+            <td className={titleRow ? "bold-cell" : undefined} key={i}>
               {func(item)}
             </td>
           );
@@ -36,7 +36,7 @@ export default function AllStats() {
     );
   };
   return (
-    <table className="allStatsTable">
+    <table className="all-stats-table">
       <tbody>
         {getDataRow(
           "",

@@ -1,12 +1,12 @@
-.gameStatBox {
+.game-stats-box {
   width: 100%;
 }
 
-.gameStatTitle {
+.game-stats-title {
   padding: 0 10px;
 }
 
-.gameStatInfo {
+.game-stats-info {
   max-height: 100px;
   width: 100%;
   overflow-y: scroll;
@@ -18,7 +18,7 @@
   }
 }
 
-.gameStatPath {
+.game-stats-path {
   background: var(--accent);
   color: var(--accent-colour);
   border-radius: 2px;
@@ -30,7 +30,7 @@
   height: fit-content;
 }
 
-.gameStatPathStart,
-.gameStatPathEnd {
+.game-stats-path-start,
+.game-stats-path-end {
   font-size: 1.2em;
 }

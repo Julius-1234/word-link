@@ -1,9 +1,9 @@
-.difficultyKeyColour {
+.difficulty-key-colour {
   width: 20px;
   height: 20px;
 }
 
-.difficultyKey {
+.difficulty-key {
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;

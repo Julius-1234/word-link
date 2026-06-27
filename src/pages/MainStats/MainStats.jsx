@@ -8,12 +8,12 @@ export default function MainStats() {
   const date = new Date();
   return (
     <>
-      <div className="mainStatsNav">
+      <div className="main-stats-nav">
         <Link to="/">&#x276E; home</Link>
       </div>
-      <div className="allStatsTitle">All Stats</div>
+      <div className="all-stats-title">All Stats</div>
       <AllStats />
-      <div className="gameStatsTitle">Current Game Stats</div>
+      <div className="game-stats-title">Current Game Stats</div>
       <GameStats date={date.getTime()} />
     </>
   );

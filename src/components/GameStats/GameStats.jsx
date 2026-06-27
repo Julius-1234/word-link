@@ -15,34 +15,34 @@ export default function GameStats({ date }) {
   let dateString = new Date(date);
   dateString = `${dateString.getDate()}/${dateString.getMonth() + 1}/${dateString.getFullYear()}`;
   return (
-    <div className="gameStats">
+    <div className="game-stats">
       <b>{dateString}</b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
         if (paths.length === 0) return;
         return (
-          <div className="gameStatBox" key={i}>
-            <div className="gameStatTitle">
+          <div className="game-stats-box" key={i}>
+            <div className="game-stats-title">
               {`${difficultyInfo.difficulties[pair[0]].displayName} (${paths.length})`}
               <br />
               <b>
                 {pair[1].start} &rarr; {pair[1].end}
               </b>
             </div>
-            <div className="gameStatInfo">
+            <div className="game-stats-info">
               {paths
                 .sort((a, b) => {
                   a.length - b.length;
                 })
                 .map((path, i) => (
-                  <div className="gameStatPath" key={i}>
-                    <div className="gameStatPathStart">{pair[1].start}</div>
+                  <div className="game-stats-path" key={i}>
+                    <div className="game-stats-path-start">{pair[1].start}</div>
                     {path.map((word, i) => (
-                      <div className="gameStatPathWord" key={i}>
+                      <div className="game-stats-path-word" key={i}>
                         {word}
                       </div>
                     ))}
-                    <div className="gameStatPathEnd">{pair[1].end}</div>
+                    <div className="game-stats-path-end">{pair[1].end}</div>
                   </div>
                 ))}
             </div>
