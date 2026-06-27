@@ -1,31 +1,10 @@
 import "./Game.css";
-import { useNavigate } from "react-router-dom";
+import GameMode from "../GameMode/GameMode.jsx";
 export default function Game({ path, start, end, guess, maxGuesses, date }) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const archiveDate = urlParams.get("archive");
-  const navigate = useNavigate();
-  const changeHandler = (e) => {
-    if (e.target.value === "daily") {
-      navigate("/");
-    } else {
-      navigate("/archive");
-    }
-  };
   return (
     <>
       <div className="game-info">
-        <select className="game-info-select" onChange={changeHandler}>
-          <option value="daily" selected={!archiveDate} hidden={!archiveDate}>
-            daily
-          </option>
-          <option
-            value="archive"
-            selected={!!archiveDate}
-            hidden={!!archiveDate}
-          >
-            archive
-          </option>
-        </select>
+        <GameMode />
         <div className="game-info-date">
           {date
             ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`

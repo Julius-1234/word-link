@@ -13,13 +13,13 @@ export const difficultyInfo = {
       beatenColour: "#f81",
     },
     medium: {
-      steps: 6,
+      steps: 5,
       seedMult: 2,
       displayName: "normal",
       beatenColour: "#f00",
     },
     hard: {
-      steps: 8,
+      steps: 7,
       seedMult: 3,
       displayName: "harder",
       beatenColour: "#a0f",

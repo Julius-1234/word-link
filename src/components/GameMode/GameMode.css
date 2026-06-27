@@ -1,0 +1,32 @@
+.game-info-select {
+  --border-radius: 2px;
+  color: var(--accent-color);
+  font-size: 0.8em;
+  position: relative;
+  user-select: none;
+  & > * {
+    background: var(--accent);
+    border-radius: var(--border-radius);
+    width: 100%;
+  }
+  .game-info-select-option {
+    position: absolute;
+    display: none;
+    &:hover {
+      background: var(--accent-dark);
+    }
+  }
+  &:hover {
+    .game-info-select-option {
+      display: block;
+    }
+    & > * {
+      &:nth-child(1) {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+      }
+      &:nth-last-child(1) {
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+      }
+    }
+  }
+}
