@@ -1,8 +1,9 @@
 import "./GameStats.css";
 import { difficultyInfo } from "../../utils/constants.js";
+import { getData } from "../../utils/storage.js";
 
 export default function GameStats({ date }) {
-  const stats = JSON.parse(localStorage.getItem("data")) || {};
+  const stats = getData();
   date = new Date(date);
   date = new Date(
     date.getFullYear(),

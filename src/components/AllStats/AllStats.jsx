@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import { difficultyInfo } from "../../utils/constants.js";
 import "./AllStats.css";
+import { getData } from "../../utils/storage.js";
 
 export default function AllStats() {
-  const data = JSON.parse(localStorage.getItem("data")) || { days: {} };
+  const data = getData();
   const prossesedInfo = { difficultyStats: {} };
   const difficulties = difficultyInfo.order;
   useMemo(() => {
@@ -19,7 +20,6 @@ export default function AllStats() {
         0,
       );
     }
-    console.log(prossesedInfo.difficultyStats);
   }, [data]);
   const getDataRow = (title, func, titleRow = false) => {
     return (

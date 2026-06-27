@@ -7,19 +7,19 @@ export const difficultyInfo = {
   beatenNone: "#ff0",
   difficulties: {
     easy: {
-      steps: 4,
+      steps: 3,
       seedMult: 1,
       displayName: "easier",
       beatenColour: "#f81",
     },
     medium: {
-      steps: 5,
+      steps: 6,
       seedMult: 2,
       displayName: "normal",
       beatenColour: "#f00",
     },
     hard: {
-      steps: 6,
+      steps: 8,
       seedMult: 3,
       displayName: "harder",
       beatenColour: "#a0f",

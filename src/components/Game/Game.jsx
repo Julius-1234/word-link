@@ -34,7 +34,7 @@ export default function Game({ path, start, end, guess, maxGuesses, date }) {
       </div>
       <div className="game-box">
         <div className="game-start-word">{start}</div>
-        {path.map((word) => {
+        {path?.map((word) => {
           return (
             <div key={word} className="game-path-word">
               {word}

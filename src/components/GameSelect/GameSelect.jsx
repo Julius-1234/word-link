@@ -11,7 +11,7 @@ export default function GameSelect({
       {difficultyInfo.order.map((key, i) => {
         const item = difficultyInfo.difficulties[key];
         let className = "locked";
-        if (unlockedDifficulties.includes(key)) className = "unlocked";
+        if (unlockedDifficulties?.includes(key)) className = "unlocked";
         if (difficulty === key) className = "selected";
         return (
           <button

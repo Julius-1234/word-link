@@ -12,6 +12,8 @@ import { maxGuesses, difficultyInfo, changes } from "../utils/constants.js";
 
 import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
 
+import { getData, saveData } from "../utils/storage.js";
+
 const GameContext = createContext(null);
 export default function GameEngine({ children, onMessage }) {
   // resources
@@ -60,6 +62,7 @@ export default function GameEngine({ children, onMessage }) {
             "is not unlocked",
           );
         newState.currentDay = newState.days[dateKey];
+        newState.dateKey = dateKey;
         const difficulty = newState.currentDay.currentDifficulty;
         const seed =
           dateSeed * difficultyInfo.difficulties[difficulty].seedMult;
@@ -119,17 +122,8 @@ export default function GameEngine({ children, onMessage }) {
   }, getData());
 
   useEffect(() => {
-    saveData();
+    saveData(allData);
   }, [allData]);
-
-  // localstorage stuff
-  function getData() {
-    const data = JSON.parse(localStorage.getItem("data")) || { days: {} };
-    return data;
-  }
-  function saveData() {
-    localStorage.setItem("data", JSON.stringify(allData));
-  }
 
   // makeGame
   function makeGame(seed, steps) {
@@ -228,7 +222,7 @@ export default function GameEngine({ children, onMessage }) {
       allDataDispatch({ type: "addGuess", value: input });
       allDataDispatch({ type: "setGuess", value: "" });
     }
-    saveData();
+    saveData(allData);
     // may need to return win? and changeTypes
   }
 
