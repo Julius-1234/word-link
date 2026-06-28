@@ -1,0 +1,17 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.keyboard-row {
+  width: fit-content;
+  & > * {
+    background: var(--accent);
+    color: var(--accent-colour);
+    margin: 2px;
+    width: 1.5em;
+    height: 2em;
+    border-radius: 1px;
+  }
+}

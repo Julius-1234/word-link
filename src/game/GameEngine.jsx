@@ -204,16 +204,15 @@ export default function GameEngine({ children, onMessage }) {
       allDataDispatch({ type: "setGuess", value: "" });
       const difficulty = allData.currentDay.currentDifficulty;
       const next = difficultyInfo.difficulties[difficulty].next;
+      onMessage({
+        message: "well done!",
+        timeStamp: Date.now(),
+        type: "message",
+      });
       if (next && !allData.currentDay.unlockedDifficulties.includes(next)) {
         allDataDispatch({ type: "unlockDifficulty", value: next });
         onMessage({
           message: `new difficulty unlocked: ${next}`,
-          timeStamp: Date.now(),
-          type: "message",
-        });
-      } else {
-        onMessage({
-          message: "well done!",
           timeStamp: Date.now(),
           type: "message",
         });

@@ -3,6 +3,7 @@ import { useGame } from "../../game/GameEngine.jsx";
 
 import GameSelect from "../GameSelect/GameSelect.jsx";
 import Game from "../Game/Game.jsx";
+import Keyboard from "../Keyboard/Keyboard.jsx";
 
 export default function Content() {
   const {
@@ -33,6 +34,7 @@ export default function Content() {
         maxGuesses={maxGuesses}
         date={date}
       />
+      <Keyboard />
     </div>
   );
 }
