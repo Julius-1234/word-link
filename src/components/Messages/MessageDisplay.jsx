@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Messages.css";
 
-export default function Errors({ data }) {
+export default function MessageDisplay({ data }) {
   return (
     <div className="errors">
       {data.toReversed().map((error, i) => (

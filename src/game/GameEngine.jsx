@@ -149,30 +149,34 @@ export default function GameEngine({ children, onMessage }) {
   }
 
   //guessmaking logic
-  useEffect(() => {
-    const keyDownHandler = (e) => {
-      if (!resources || !allData.currentGame) return;
-      const key = e.key.toLowerCase();
-      if (key === "enter") {
-        try {
-          makeGuess(allData.currentGame.guess);
-        } catch (e) {
-          onMessage({
-            message: e.message,
-            timeStamp: Date.now(),
-            type: "error",
-          });
-        }
-      } else if (key === "backspace") backspace();
-      else if (/^[a-z]$/.test(key))
-        allDataDispatch({
-          type: "setGuess",
-          value: `${allData.currentGame.guess || ""}${key}`,
+  function keyHandler(key) {
+    if (!resources || !allData.currentGame) return;
+    key = key.toLowerCase();
+    if (key === "enter") {
+      try {
+        makeGuess(allData.currentGame.guess);
+      } catch (e) {
+        onMessage({
+          message: e.message,
+          timeStamp: Date.now(),
+          type: "error",
         });
+      }
+    } else if (key === "backspace") backspace();
+    else if (/^[a-z]$/.test(key))
+      allDataDispatch({
+        type: "setGuess",
+        value: `${allData.currentGame.guess || ""}${key}`,
+      });
+  }
+
+  useEffect(() => {
+    const inputHandler = (e) => {
+      keyHandler(e.key);
     };
-    window.addEventListener("keydown", keyDownHandler);
+    window.addEventListener("keydown", inputHandler);
     return () => {
-      window.removeEventListener("keydown", keyDownHandler);
+      window.removeEventListener("keydown", inputHandler);
     };
   }, [resources, allData.currentGame]);
 
@@ -255,6 +259,7 @@ export default function GameEngine({ children, onMessage }) {
       allDataDispatch({ type: "setDifficulty", value });
     },
     date,
+    keyHandler,
   };
 
   useEffect(() => {

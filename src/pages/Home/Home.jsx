@@ -3,7 +3,7 @@ import { useState } from "react";
 import Head from "../../components/Head/Head.jsx";
 import Content from "../../components/Content/Content.jsx";
 import GameEngine from "../../game/GameEngine.jsx";
-import Errors from "../../components/Messages/Messages.jsx";
+import MessageDisplay from "../../components/Messages/MessageDisplay.jsx";
 
 export default function Home() {
   const errorsMax = 5;
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <Errors data={messages}></Errors>
+      <MessageDisplay data={messages}></MessageDisplay>
       <Head />
       <GameEngine onMessage={addMessage}>
         <Content />

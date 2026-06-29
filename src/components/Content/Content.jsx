@@ -17,6 +17,7 @@ export default function Content() {
     difficultyInfo,
     setDifficulty,
     date,
+    keyHandler,
   } = useGame();
   return (
     <div>
@@ -34,7 +35,7 @@ export default function Content() {
         maxGuesses={maxGuesses}
         date={date}
       />
-      <Keyboard />
+      <Keyboard onInput={keyHandler} />
     </div>
   );
 }
