@@ -244,6 +244,7 @@ export default function GameEngine({ children, onMessage }) {
 
   function clearPath() {
     allDataDispatch({ type: "clearPath" });
+    allDataDispatch({ type: "setGuess", value: "" });
   }
 
   const game = {
@@ -260,6 +261,7 @@ export default function GameEngine({ children, onMessage }) {
     },
     date,
     keyHandler,
+    clearPath,
   };
 
   useEffect(() => {

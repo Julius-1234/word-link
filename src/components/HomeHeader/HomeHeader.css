@@ -1,18 +1,17 @@
-.head {
+.Home-header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  a {
+    margin: 10px;
+  }
 }
 
-.home-nav {
+.Home-header-nav {
   display: flex;
   flex-direction: horizontal;
 }
 
 .logo {
   width: 100px;
-}
-
-a {
-  margin: 10px;
 }

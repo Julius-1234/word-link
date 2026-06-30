@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-import Head from "../../components/Head/Head.jsx";
+import HomeHeader from "../../components/HomeHeader/HomeHeader.jsx";
 import Content from "../../components/Content/Content.jsx";
 import GameEngine from "../../game/GameEngine.jsx";
 import MessageDisplay from "../../components/Messages/MessageDisplay.jsx";
+import HomeFooter from "../../components/HomeFooter/HomeFooter.jsx";
 
 export default function Home() {
   const errorsMax = 5;
@@ -18,9 +19,10 @@ export default function Home() {
   return (
     <>
       <MessageDisplay data={messages}></MessageDisplay>
-      <Head />
+      <HomeHeader />
       <GameEngine onMessage={addMessage}>
         <Content />
+        <HomeFooter />
       </GameEngine>
     </>
   );
