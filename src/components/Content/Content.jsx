@@ -11,7 +11,6 @@ export default function Content() {
     start,
     end,
     guess,
-    maxGuesses,
     difficulty,
     unlockedDifficulties,
     difficultyInfo,
@@ -27,14 +26,7 @@ export default function Content() {
         difficultyInfo={difficultyInfo}
         setDifficulty={setDifficulty}
       />
-      <Game
-        path={path}
-        start={start}
-        end={end}
-        guess={guess}
-        maxGuesses={maxGuesses}
-        date={date}
-      />
+      <Game path={path} start={start} end={end} guess={guess} date={date} />
       <Keyboard onInput={keyHandler} />
     </div>
   );

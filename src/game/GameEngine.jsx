@@ -8,7 +8,7 @@ import {
   useReducer,
 } from "react";
 
-import { maxGuesses, difficultyInfo, changes } from "../utils/constants.js";
+import { maxChars, difficultyInfo, changes } from "../utils/constants.js";
 
 import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
 
@@ -163,11 +163,13 @@ export default function GameEngine({ children, onMessage }) {
         });
       }
     } else if (key === "backspace") backspace();
-    else if (/^[a-z]$/.test(key))
-      allDataDispatch({
-        type: "setGuess",
-        value: `${allData.currentGame.guess || ""}${key}`,
-      });
+    else if (/^[a-z]$/.test(key)) {
+      if ((allData.currentGame.guess || "").length < maxChars)
+        allDataDispatch({
+          type: "setGuess",
+          value: `${allData.currentGame.guess || ""}${key}`,
+        });
+    }
   }
 
   useEffect(() => {
@@ -183,7 +185,6 @@ export default function GameEngine({ children, onMessage }) {
   function makeGuess(input) {
     if (!input) throw new Error("enter some text first");
     const currentPath = allData.currentGame.currentPath;
-    if (currentPath.length >= maxGuesses) throw new Error("max guesses"); // max guesses
     if (!resources.validation.includes(input))
       throw new Error("not in word list"); // not a word
     if (currentPath.includes(input)) throw new Error("already used"); // already used
@@ -252,7 +253,6 @@ export default function GameEngine({ children, onMessage }) {
     start: allData.currentGame?.start,
     end: allData.currentGame?.end,
     guess: allData.currentGame?.guess,
-    maxGuesses,
     difficulty: allData.currentDay?.currentDifficulty,
     unlockedDifficulties: allData.currentDay?.unlockedDifficulties,
     difficultyInfo,

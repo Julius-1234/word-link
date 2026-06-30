@@ -1,6 +1,6 @@
 import "./Game.css";
 import GameMode from "../GameMode/GameMode.jsx";
-export default function Game({ path, start, end, guess, maxGuesses, date }) {
+export default function Game({ path, start, end, guess, date }) {
   return (
     <>
       <div className="game-info">

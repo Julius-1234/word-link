@@ -1,4 +1,4 @@
-export const maxGuesses = 7;
+export const maxChars = 30;
 
 export const archiveStart = new Date("2026-07-29"); // temp
 
