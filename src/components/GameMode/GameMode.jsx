@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./GameMode.css";
+import styles from "./GameMode.module.scss";
 
 export default function GameMode() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -13,12 +13,12 @@ export default function GameMode() {
     }
   };
   return (
-    <div className="game-info-select">
-      <div className="game-info-select-selected">
+    <div className={styles.gameInfoSelect}>
+      <div className={styles.gameInfoSelectSelected}>
         {archiveDate ? "archive" : "daily"} &#x25BE;
       </div>
       <div
-        className="game-info-select-option"
+        className={styles.gameInfoSelectOption}
         onClick={() => {
           const value = !archiveDate ? "archive" : "daily";
           changeHandler(value);

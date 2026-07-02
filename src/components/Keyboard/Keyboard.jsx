@@ -1,4 +1,4 @@
-import "./Keyboard.css";
+import styles from "./Keyboard.module.scss";
 
 export default function Keyboard({ onInput }) {
   const row = (keys) => {
@@ -17,12 +17,12 @@ export default function Keyboard({ onInput }) {
   };
 
   return (
-    <div className="keyboard">
-      <div className="keyboard-row">{row("qwertyuiop")}</div>
-      <div className="keyboard-row">{row("asdfghjkl")}</div>
-      <div className="keyboard-row">
+    <div className={styles.keyboard}>
+      <div className={styles.keyboardRow}>{row("qwertyuiop")}</div>
+      <div className={styles.keyboardRow}>{row("asdfghjkl")}</div>
+      <div className={styles.keyboardRow}>
         <button
-          className="key-board-big"
+          className={styles.keyboardBig}
           onMouseDown={() => {
             onInput("backspace");
           }}
@@ -31,7 +31,7 @@ export default function Keyboard({ onInput }) {
         </button>
         {row("zxcvbnm")}
         <button
-          className="key-board-big"
+          className={styles.keyboardBig}
           onMouseDown={() => {
             onInput("enter");
           }}

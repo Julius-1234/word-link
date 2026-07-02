@@ -4,7 +4,6 @@ export const archiveStart = new Date("2026-07-29"); // temp
 
 export const difficultyInfo = {
   order: ["easy", "medium", "hard"],
-  beatenNone: "#ff0",
   difficulties: {
     easy: {
       steps: 3,
@@ -16,13 +15,13 @@ export const difficultyInfo = {
       steps: 5,
       seedMult: 2,
       displayName: "normal",
-      beatenColour: "#f00",
+      beatenColour: "#ff0",
     },
     hard: {
       steps: 7,
       seedMult: 3,
       displayName: "harder",
-      beatenColour: "#a0f",
+      beatenColour: "#0f0",
     },
   },
 };

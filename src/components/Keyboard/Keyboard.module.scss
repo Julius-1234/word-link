@@ -1,11 +1,10 @@
 .keyboard {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.keyboard-row {
+.keyboardRow {
   width: fit-content;
   & > * {
     background: var(--accent);
@@ -14,9 +13,10 @@
     width: 1.5em;
     height: 2em;
     border-radius: 3px;
+    user-select: none;
   }
 }
 
-.key-board-big {
+.keyboardBig {
   width: 2.5em;
 }

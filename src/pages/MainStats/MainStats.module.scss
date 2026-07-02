@@ -1,7 +1,12 @@
-.archive-title {
+.allStatsTitle,
+.gameStatsTitle {
   padding: 0 10px;
   margin-bottom: 10px;
   background: var(--accent);
   color: var(--accent-colour);
   border-radius: 3px;
+}
+
+.mainStatsNav {
+  margin-bottom: 10px;
 }

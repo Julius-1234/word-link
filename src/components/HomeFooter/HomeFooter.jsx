@@ -1,4 +1,4 @@
-import "./HomeFooter.css";
+import styles from "./HomeFooter.module.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useGame } from "../../game/GameEngine";
@@ -17,10 +17,10 @@ export default function HomeFooter() {
   };
   const onBlur = () => setClearStatus(clear);
   return (
-    <footer className="home-footer">
+    <footer className={styles.homeFooter}>
       <Link to="/stats">stats</Link>
       <div
-        className="clear-path"
+        className={styles.clearPath}
         tabIndex={0}
         onClick={onClick}
         onBlur={onBlur}

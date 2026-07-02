@@ -1,4 +1,4 @@
-import "./GameStats.css";
+import styles from "./GameStats.module.scss";
 import { difficultyInfo } from "../../utils/constants.js";
 import { getData } from "../../utils/storage.js";
 
@@ -15,34 +15,36 @@ export default function GameStats({ date }) {
   let dateString = new Date(date);
   dateString = `${dateString.getDate()}/${dateString.getMonth() + 1}/${dateString.getFullYear()}`;
   return (
-    <div className="game-stats">
+    <div className={styles.gameStatsBox}>
       <b>{dateString}</b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
         if (paths.length === 0) return;
         return (
-          <div className="game-stats-box" key={i}>
-            <div className="game-stats-title">
+          <div className={styles.gameStatsBox} key={i}>
+            <div className={styles.gameStatsTitle}>
               {`${difficultyInfo.difficulties[pair[0]].displayName} (${paths.length})`}
               <br />
               <b>
                 {pair[1].start} &rarr; {pair[1].end}
               </b>
             </div>
-            <div className="game-stats-info">
+            <div className={styles.gameStatsInfo}>
               {paths
                 .sort((a, b) => {
                   a.length - b.length;
                 })
                 .map((path, i) => (
-                  <div className="game-stats-path" key={i}>
-                    <div className="game-stats-path-start">{pair[1].start}</div>
+                  <div className={styles.gameStatsPath} key={i}>
+                    <div className={styles.gameStatsPathStart}>
+                      {pair[1].start}
+                    </div>
                     {path.map((word, i) => (
-                      <div className="game-stats-path-word" key={i}>
+                      <div className={styles.gameStatsPathWord} key={i}>
                         {word}
                       </div>
                     ))}
-                    <div className="game-stats-path-end">{pair[1].end}</div>
+                    <div className={styles.gameStatsPathEnd}>{pair[1].end}</div>
                   </div>
                 ))}
             </div>

@@ -1,28 +1,23 @@
-import "./Game.css";
-import GameMode from "../GameMode/GameMode.jsx";
-export default function Game({ path, start, end, guess, date }) {
+import styles from "./Game.module.scss";
+
+export default function Game({ path, start, end, guess }) {
+  const words = path?.map((word) => {
+    return (
+      <div key={word} className={styles.gamePathWord}>
+        {word}
+      </div>
+    );
+  });
+  const last = words?.pop();
   return (
-    <>
-      <div className="game-info">
-        <GameMode />
-        <div className="game-info-date">
-          {date
-            ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-            : ""}
-        </div>
+    <div className={styles.gameBox}>
+      <div className={styles.gameStartWord}>{start}</div>
+      <div className={styles.scrollingGroup}>{words}</div>
+      <div>
+        {last}
+        <div className={styles.gameInput}>{guess}</div>
+        <div className={styles.gameEndWord}>{end}</div>
       </div>
-      <div className="game-box">
-        <div className="game-start-word">{start}</div>
-        {path?.map((word) => {
-          return (
-            <div key={word} className="game-path-word">
-              {word}
-            </div>
-          );
-        })}
-        <div className="game-input">{guess}</div>
-        <div className="game-end-word">{end}</div>
-      </div>
-    </>
+    </div>
   );
 }

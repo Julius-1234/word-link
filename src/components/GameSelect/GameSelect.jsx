@@ -1,4 +1,4 @@
-import "./GameSelect.css";
+import styles from "./GameSelect.module.scss";
 
 export default function GameSelect({
   difficulty,
@@ -7,12 +7,12 @@ export default function GameSelect({
   setDifficulty,
 }) {
   return (
-    <div className="game-nav">
+    <div className={styles.gameNav}>
       {difficultyInfo.order.map((key, i) => {
         const item = difficultyInfo.difficulties[key];
-        let className = "locked";
-        if (unlockedDifficulties?.includes(key)) className = "unlocked";
-        if (difficulty === key) className = "selected";
+        let className = styles.locked;
+        if (unlockedDifficulties?.includes(key)) className = styles.unlocked;
+        if (difficulty === key) className = styles.selected;
         return (
           <button
             key={i}

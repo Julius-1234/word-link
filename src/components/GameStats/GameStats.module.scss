@@ -1,24 +1,19 @@
-.game-stats-box {
+.gameStatsBox {
   width: 100%;
 }
 
-.game-stats-title {
+.gameStatsTitle {
   padding: 0 10px;
 }
 
-.game-stats-info {
+.gameStatsInfo {
   max-height: 100px;
   width: 100%;
-  overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-dark) #ccc;
+  overflow-y: auto;
   display: flex;
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
 }
 
-.game-stats-path {
+.gameStatsPath {
   background: var(--accent);
   color: var(--accent-colour);
   border-radius: 2px;
@@ -30,7 +25,7 @@
   height: fit-content;
 }
 
-.game-stats-path-start,
-.game-stats-path-end {
+.gameStatsPathStart,
+.gameStatsPathEnd {
   font-size: 1.2em;
 }

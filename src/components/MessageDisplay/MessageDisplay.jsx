@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import "./Messages.css";
+import styles from "./MessageDisplay.module.scss";
 
 export default function MessageDisplay({ data }) {
   return (
-    <div className="errors">
+    <div className={styles.errors}>
       {data.toReversed().map((error, i) => (
-        <div className={error.type} key={i}>
+        <div className={styles[error.type]} key={i}>
           {error.message}
         </div>
       ))}

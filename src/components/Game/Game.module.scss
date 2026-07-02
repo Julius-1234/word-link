@@ -1,12 +1,12 @@
-.game-start-word {
+.gameStartWord {
   font-size: 1.2em;
 }
 
-.game-end-word {
+.gameEndWord {
   font-size: 1.2em;
 }
 
-.game-input {
+.gameInput {
   background: var(--accent);
   color: var(--accent-color);
   margin: 5px 20px;
@@ -15,15 +15,14 @@
   line-height: 1em;
 }
 
-.game-box {
+.gameBox {
   text-align: center;
   margin-top: 20px;
   user-select: none;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
-.game-info {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  padding: 0 10px;
+.scrollingGroup {
+  overflow-y: auto;
 }

@@ -188,6 +188,8 @@ export default function GameEngine({ children, onMessage }) {
     if (!resources.validation.includes(input))
       throw new Error("not in word list"); // not a word
     if (currentPath.includes(input)) throw new Error("already used"); // already used
+    if (allData.currentGame.start === input)
+      throw new Error("that is the start word"); // cannot use start word
     const last = [...currentPath].at(-1) || allData.currentGame.start;
     const changeTypes = [];
     for (const change of Object.keys(changes)) {
