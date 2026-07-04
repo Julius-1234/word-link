@@ -2,21 +2,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .keyboardRow {
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   & > * {
     background: var(--accent);
     color: var(--accent-colour);
     margin: 2px;
-    width: 1.5em;
     height: 2em;
     border-radius: 3px;
     user-select: none;
+    flex: 1;
   }
 }
 
 .keyboardBig {
-  width: 2.5em;
+  flex: 1.6;
+}
+
+.keyboardGap {
+  flex: 0.5;
+  visibility: hidden;
 }

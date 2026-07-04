@@ -14,6 +14,8 @@ import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
 
 import { getData, saveData } from "../utils/storage.js";
 
+import { getDateFromUrl } from "../utils/date.js";
+
 const GameContext = createContext(null);
 export default function GameEngine({ children, onMessage }) {
   // resources
@@ -39,11 +41,12 @@ export default function GameEngine({ children, onMessage }) {
     const newState = structuredClone(state);
     switch (action.type) {
       case "setDay": {
-        const dateSeed = new Date(
-          action.date.getFullYear(),
-          action.date.getMonth(),
-          action.date.getDate(),
-        ).getTime();
+        const dateSeed =
+          new Date(
+            action.date.getFullYear(),
+            action.date.getMonth(),
+            action.date.getDate(),
+          ).getTime() / 1000;
         const dateKey = dateSeed.toString();
         newState.days ??= {};
         newState.days[dateKey] ??= {
@@ -267,7 +270,7 @@ export default function GameEngine({ children, onMessage }) {
   };
 
   useEffect(() => {
-    setDate(new Date());
+    setDate(new Date(getDateFromUrl() || Date.now()));
   }, [resources]);
 
   useEffect(() => {

@@ -5,11 +5,9 @@ import { getData } from "../../utils/storage.js";
 export default function GameStats({ date }) {
   const stats = getData();
   date = new Date(date);
-  date = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-  ).getTime();
+  date =
+    new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime() /
+    1000;
   const currentDay = stats.days?.[date.toString()] || {};
   const games = currentDay.games ? Object.entries(currentDay.games) : [];
   let dateString = new Date(date);
@@ -29,7 +27,7 @@ export default function GameStats({ date }) {
                 {pair[1].start} &rarr; {pair[1].end}
               </b>
             </div>
-            <div className={styles.gameStatsInfo}>
+            <div className={`${styles.gameStatsInfo} scrollbar-styles`}>
               {paths
                 .sort((a, b) => {
                   a.length - b.length;
