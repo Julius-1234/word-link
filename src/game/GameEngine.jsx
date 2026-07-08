@@ -8,16 +8,20 @@ import {
   useReducer,
 } from "react";
 
+import { useLocation } from "react-router-dom";
+
 import { maxChars, difficultyInfo, changes } from "../utils/constants.js";
 
 import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
 
 import { getData, saveData } from "../utils/storage.js";
 
-import { getDateFromUrl } from "../utils/date.js";
+import { getDateFromUrl, formatToDays } from "../utils/date.js";
 
 const GameContext = createContext(null);
 export default function GameEngine({ children, onMessage }) {
+  const location = useLocation();
+
   // resources
   const [resources, setResources] = useState(null);
   useEffect(() => {
@@ -41,12 +45,7 @@ export default function GameEngine({ children, onMessage }) {
     const newState = structuredClone(state);
     switch (action.type) {
       case "setDay": {
-        const dateSeed =
-          new Date(
-            action.date.getFullYear(),
-            action.date.getMonth(),
-            action.date.getDate(),
-          ).getTime() / 1000;
+        const dateSeed = formatToDays(action.date);
         const dateKey = dateSeed.toString();
         newState.days ??= {};
         newState.days[dateKey] ??= {
@@ -177,6 +176,7 @@ export default function GameEngine({ children, onMessage }) {
 
   useEffect(() => {
     const inputHandler = (e) => {
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
       keyHandler(e.key);
     };
     window.addEventListener("keydown", inputHandler);
@@ -271,7 +271,7 @@ export default function GameEngine({ children, onMessage }) {
 
   useEffect(() => {
     setDate(new Date(getDateFromUrl() || Date.now()));
-  }, [resources]);
+  }, [resources, location.search]);
 
   useEffect(() => {
     if (resources) {

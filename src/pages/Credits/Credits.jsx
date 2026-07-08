@@ -1,6 +1,9 @@
+import HomeLink from "../../components/HomeLink/HomeLink";
+
 export default function Credits() {
   return (
     <div>
+      <HomeLink />
       <h3>Credits</h3>
       <p>
         All resources are used in accordance with their respective licenses.

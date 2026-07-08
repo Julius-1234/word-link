@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { difficultyInfo } from "../../utils/constants.js";
-import "./AllStats.css";
+import styles from "./AllStats.module.scss";
 import { getData } from "../../utils/storage.js";
 
 export default function AllStats() {
@@ -24,10 +24,10 @@ export default function AllStats() {
   const getDataRow = (title, func, titleRow = false) => {
     return (
       <tr>
-        <td className="bold-cell">{title}</td>
+        <td className={styles.boldCell}>{title}</td>
         {difficulties.map((item, i) => {
           return (
-            <td className={titleRow ? "bold-cell" : undefined} key={i}>
+            <td className={titleRow ? styles.boldCell : undefined} key={i}>
               {func(item)}
             </td>
           );
@@ -36,7 +36,7 @@ export default function AllStats() {
     );
   };
   return (
-    <table className="all-stats-table">
+    <table className={styles.allStatsTable}>
       <tbody>
         {getDataRow(
           "",

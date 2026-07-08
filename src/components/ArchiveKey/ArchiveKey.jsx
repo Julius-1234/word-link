@@ -6,14 +6,12 @@ export default function ArchiveKey() {
     <div className={styles.archiveKey}>
       {Object.values(difficultyInfo.difficulties).map((difficulty, i) => (
         <div key={i} className={styles.difficultyKey}>
-          <div
+          <span
             className={styles.difficultyKeyColour}
-            style={{ backgroundColor: difficulty.beatenColour }}
+            style={difficulty.beatenStyles}
           />
-          = completed
-          <div className={styles.difficultyKeyName}>
-            {difficulty.displayName}
-          </div>
+
+          {" = completed " + difficulty.displayName}
         </div>
       ))}
     </div>

@@ -1,0 +1,54 @@
+.day {
+  display: block;
+  padding: 5px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: fit-content;
+  width: 7em;
+  background: var(--accent);
+  color: var(--accent-colour);
+  text-decoration: none;
+  user-select: none;
+}
+
+.archiveCalendarSpecial {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  top: 0;
+  margin: 20px 0;
+  background: var(--background);
+
+  .day {
+    width: 100%;
+  }
+}
+
+.today {
+  margin-bottom: 10px;
+}
+
+.timeAgo {
+  font-size: 0.7em;
+}
+
+.archiveCalendar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.archiveCalendarBox {
+  overflow-y: auto;
+  font-size: 0.9em;
+}
+
+.archiveEnd {
+  width: 100%;
+  background: var(--accent);
+  color: var(--accent-colour);
+  text-align: center;
+  border-radius: 2px;
+  padding: 5px;
+}

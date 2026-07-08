@@ -5,3 +5,9 @@
   color: var(--accent-colour);
   border-radius: 3px;
 }
+
+.archive {
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto auto auto 1fr;
+}

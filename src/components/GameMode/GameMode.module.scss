@@ -1,0 +1,31 @@
+.gameInfoSelect {
+  color: var(--accent-color);
+  font-size: 0.8em;
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.gameInfoSelectOptions {
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+
+.gameInfoSelect:hover .gameInfoSelectOptions {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameInfoSelectOption,
+.gameInfoSelectSelected {
+  background: var(--accent);
+  color: var(--accent-color);
+  width: 100%;
+  padding: 2px;
+  text-decoration: none;
+}
+
+.gameInfoSelectOption:hover {
+  filter: brightness(50%);
+}

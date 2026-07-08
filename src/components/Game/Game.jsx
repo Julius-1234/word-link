@@ -21,6 +21,10 @@ export default function Game({ path, start, end, guess }) {
   };
   useEffect(() => {
     checkForChanges();
+    window.addEventListener("resize", checkForChanges);
+    return () => {
+      window.removeEventListener("resize", checkForChanges);
+    };
   }, []);
   return (
     <div className={styles.gameBox}>

@@ -1,6 +1,6 @@
 export const maxChars = 30;
 
-export const archiveStart = new Date("2026-07-29"); // temp
+export const archiveStart = new Date("2025-07-8"); // temp
 
 export const difficultyInfo = {
   order: ["easy", "medium", "hard"],
@@ -8,20 +8,20 @@ export const difficultyInfo = {
     easy: {
       steps: 3,
       seedMult: 1,
-      displayName: "easier",
-      beatenColour: "#f81",
+      displayName: "easy",
+      beatenStyles: { backgroundColor: "#f81", color: "#333" },
     },
     medium: {
-      steps: 5,
+      steps: 6,
       seedMult: 2,
       displayName: "normal",
-      beatenColour: "#ff0",
+      beatenStyles: { backgroundColor: "#ff0", color: "#333" },
     },
     hard: {
-      steps: 7,
+      steps: 8,
       seedMult: 3,
-      displayName: "harder",
-      beatenColour: "#0f0",
+      displayName: "hard",
+      beatenStyles: { backgroundColor: "#0f0", color: "#333" },
     },
   },
 };

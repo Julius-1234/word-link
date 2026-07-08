@@ -1,16 +1,15 @@
 import GameStats from "../../components/GameStats/GameStats.jsx";
 import AllStats from "../../components/AllStats/AllStats.jsx";
-import { Link } from "react-router-dom";
 
 import styles from "./MainStats.module.scss";
+
+import HomeLink from "../../components/HomeLink/HomeLink.jsx";
 
 export default function MainStats() {
   const date = new Date();
   return (
     <div>
-      <div className={styles.mainStatsNav}>
-        <Link to="/">&#x276E; home</Link>
-      </div>
+      <HomeLink />
       <div className={styles.allStatsTitle}>All Stats</div>
       <AllStats />
       <div className={styles.gameStatsTitle}>Current Game Stats</div>

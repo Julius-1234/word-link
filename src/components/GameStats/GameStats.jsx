@@ -1,20 +1,15 @@
 import styles from "./GameStats.module.scss";
 import { difficultyInfo } from "../../utils/constants.js";
 import { getData } from "../../utils/storage.js";
+import { formatDate, timeAgo, formatToDays } from "../../utils/date.js";
 
 export default function GameStats({ date }) {
   const stats = getData();
-  date = new Date(date);
-  date =
-    new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime() /
-    1000;
-  const currentDay = stats.days?.[date.toString()] || {};
+  const currentDay = stats.days?.[formatToDays(date).toString()] || {};
   const games = currentDay.games ? Object.entries(currentDay.games) : [];
-  let dateString = new Date(date);
-  dateString = `${dateString.getDate()}/${dateString.getMonth() + 1}/${dateString.getFullYear()}`;
   return (
     <div className={styles.gameStatsBox}>
-      <b>{dateString}</b>
+      <b>{formatDate(new Date(date))}</b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
         if (paths.length === 0) return;
