@@ -2,6 +2,7 @@ import Home from "./pages/Home/Home.jsx";
 import MainStats from "./pages/MainStats/MainStats.jsx";
 import Credits from "./pages/Credits/Credits.jsx";
 import Archive from "./pages/Archive/Archive.jsx";
+import Settings from "./pages/Settings/Settings.jsx";
 import { Route, Routes } from "react-router-dom";
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/stats" element={<MainStats />} />
         <Route path="/credits" element={<Credits />} />
         <Route path="/archive" element={<Archive />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </>
   );

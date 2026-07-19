@@ -70,3 +70,10 @@ export const changes = {
     );
   },
 };
+
+export const symbols = { keyEnter: "⏎", keyBack: "⌫" }; // &#x23CE; and &#x232B;
+
+export const settingsInfo = {
+  themes: ["default", "green", "gold", "purple"],
+  fonts: ["default", "fancy", "easy", "comic"],
+};

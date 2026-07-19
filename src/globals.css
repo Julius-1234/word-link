@@ -1,0 +1,56 @@
+:root {
+  --error: #f005;
+  --error-colour: #f30;
+
+  --message: #ff05;
+  --message-colour: #fff;
+}
+
+:root:not([data-colour-scheme]),
+[data-colour-scheme="default"] {
+  --accent: #38a;
+  --accent-colour: #fff;
+}
+
+[data-colour-scheme="green"] {
+  --accent: #006d5b;
+  --accent-colour: #eee;
+}
+
+[data-colour-scheme="gold"] {
+  --accent: #d4af37;
+  --accent-colour: #222;
+}
+
+[data-colour-scheme="purple"] {
+  --accent: #a88bc4;
+  --accent-colour: #ddd;
+}
+
+:root:not([data-dark-mode]),
+[data-dark-mode="true"] {
+  --background: #333;
+  --colour: #fff;
+}
+
+[data-dark-mode="false"] {
+  --background: #eee;
+  --colour: #333;
+}
+
+:root:not([data-font]),
+[data-font="default"] {
+  font-family: "default", Arial;
+}
+
+[data-font="fancy"] {
+  font-family: "fancy", Arial;
+}
+
+[data-font="easy"] {
+  font-family: "easy", Arial;
+}
+
+[data-font="comic"] {
+  font-family: "comic", Arial;
+}

@@ -1,6 +1,9 @@
 import styles from "./Keyboard.module.scss";
+import { symbols } from "../../utils/constants";
+import { useSettings } from "../../providers/SettingsProvider";
 
 export default function Keyboard({ onInput }) {
+  const { settings } = useSettings();
   const row = (keys) => {
     return keys.split("").map((key, i) => {
       if (key === " ")
@@ -18,28 +21,36 @@ export default function Keyboard({ onInput }) {
     });
   };
 
+  const back = (
+    <button
+      className={styles.keyboardBig}
+      onMouseDown={() => {
+        onInput("backspace");
+      }}
+    >
+      {symbols.keyBack}
+    </button>
+  );
+
+  const enter = (
+    <button
+      className={styles.keyboardBig}
+      onMouseDown={() => {
+        onInput("enter");
+      }}
+    >
+      {symbols.keyEnter}
+    </button>
+  );
+
   return (
     <div className={styles.keyboard}>
       <div className={styles.keyboardRow}>{row("qwertyuiop")}</div>
       <div className={styles.keyboardRow}>{row(" asdfghjkl ")}</div>
       <div className={styles.keyboardRow}>
-        <button
-          className={styles.keyboardBig}
-          onMouseDown={() => {
-            onInput("backspace");
-          }}
-        >
-          &#x232B;
-        </button>
+        {!settings.other.switchKeys ? back : enter}
         {row("zxcvbnm")}
-        <button
-          className={styles.keyboardBig}
-          onMouseDown={() => {
-            onInput("enter");
-          }}
-        >
-          &#x23CE;
-        </button>
+        {!settings.other.switchKeys ? enter : back}
       </div>
     </div>
   );

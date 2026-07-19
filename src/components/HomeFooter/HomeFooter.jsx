@@ -16,6 +16,7 @@ export default function HomeFooter() {
     }
   };
   const onBlur = () => setClearStatus(clear);
+
   return (
     <footer className={styles.homeFooter}>
       <Link to="/stats">stats</Link>

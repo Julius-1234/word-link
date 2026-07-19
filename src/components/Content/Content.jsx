@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useGame } from "../../game/GameEngine.jsx";
+import { useSettings } from "../../providers/SettingsProvider.jsx";
 
 import GameSelect from "../GameSelect/GameSelect.jsx";
 import GameInfo from "../GameInfo/GameInfo.jsx";
@@ -19,6 +20,7 @@ export default function Content() {
     date,
     keyHandler,
   } = useGame();
+  const { settings } = useSettings();
   return (
     <>
       <GameSelect
@@ -29,7 +31,7 @@ export default function Content() {
       />
       <GameInfo date={date} />
       <Game path={path} start={start} end={end} guess={guess} />
-      <Keyboard onInput={keyHandler} />
+      {(settings.other.keyboard ?? true) && <Keyboard onInput={keyHandler} />}
     </>
   );
 }

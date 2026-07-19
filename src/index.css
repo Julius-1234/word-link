@@ -1,20 +1,25 @@
-:root {
-  --background: #333;
-  --colour: #fff;
-
-  --accent: #38a;
-  --accent-colour: #fff;
-
-  --error: #f005;
-  --error-colour: #f30;
-
-  --message: #ff05;
-  --message-colour: #fff;
-}
-
 @font-face {
   font-family: "default";
   src: url("./assets/fonts/Nunito-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "fancy";
+  src: url("./assets/fonts/StyleScript-Regular.woff2");
+  font-weight: 400;
+  size-adjust: 120%;
+}
+
+@font-face {
+  font-family: "easy";
+  src: url("./assets/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "comic";
+  src: url("./assets/fonts/ComicNeue-Regular.woff2");
   font-weight: 400;
 }
 
@@ -22,7 +27,6 @@ body {
   background: var(--background);
   color: var(--colour);
   font-size: 1.5em;
-  font-family: "default", Arial;
 }
 
 button {

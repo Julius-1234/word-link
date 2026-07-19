@@ -1,5 +1,5 @@
 .gameInfoSelect {
-  color: var(--accent-color);
+  color: var(--accent-colour);
   font-size: 0.8em;
   position: relative;
   display: inline-block;
@@ -20,7 +20,7 @@
 .gameInfoSelectOption,
 .gameInfoSelectSelected {
   background: var(--accent);
-  color: var(--accent-color);
+  color: var(--accent-colour);
   width: 100%;
   padding: 2px;
   text-decoration: none;

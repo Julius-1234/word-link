@@ -1,11 +1,17 @@
 import styles from "./GameStats.module.scss";
 import { difficultyInfo } from "../../utils/constants.js";
 import { getData } from "../../utils/storage.js";
-import { formatDate, timeAgo, formatToDays } from "../../utils/date.js";
+import {
+  formatDate,
+  timeAgo,
+  formatToDays,
+  formatFromDays,
+} from "../../utils/date.js";
 
 export default function GameStats({ date }) {
   const stats = getData();
-  const currentDay = stats.days?.[formatToDays(date).toString()] || {};
+  date ??= formatFromDays(stats.dateKey) || new Date();
+  const currentDay = stats.days?.[formatToDays(date)] || {};
   const games = currentDay.games ? Object.entries(currentDay.games) : [];
   return (
     <div className={styles.gameStatsBox}>

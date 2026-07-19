@@ -38,6 +38,7 @@ export default function ArchiveCalendar() {
     const style = best ? difficultyInfo.difficulties[best]?.beatenStyles : {};
     return (
       <Link
+        key={formatToDays(date)}
         to={{
           pathname: "/",
           search: `${formatToDays(today) !== formatToDays(date) ? "?archive=" + formatToDays(date) : ""}`,
@@ -89,8 +90,7 @@ export default function ArchiveCalendar() {
       <div className={styles.archiveCalendarSpecial}>
         Today:
         {makeDay(today, styles.today)}
-        Current Game:
-        {!isToday(current) && makeDay(current)}
+        {!isToday(current) && <>Current Game: {makeDay(current)}</>}
       </div>
       <div className={styles.archiveCalendar}>
         {days}
