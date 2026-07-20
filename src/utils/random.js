@@ -27,3 +27,15 @@ function mulberry32(a) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+
+export function newPracticeCode(seed = null) {
+  const codeLength = 10;
+  let code;
+  if (seed === null) code = Math.random();
+  else {
+    setSeed(seed);
+    code = rand();
+  }
+  code = Math.floor(code * 10 ** codeLength);
+  return code;
+}

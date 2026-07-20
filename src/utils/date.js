@@ -1,5 +1,3 @@
-import { archiveStart } from "./constants.js";
-
 const msInDay = 24 * 60 * 60 * 1000;
 
 export function formatToDays(date) {
@@ -15,22 +13,6 @@ export function isToday(date) {
   const today = formatToDays(new Date());
   date = formatToDays(date);
   return date === today;
-}
-
-export function getDateFromUrl() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const archiveParam = urlParams.get("archive");
-  if (!archiveParam) return null;
-  const date = formatFromDays(archiveParam);
-  if (date <= archiveStart) throw new Error("Date is before archive start");
-  const now = Math.round(Date.now() / msInDay) * msInDay;
-  if (date > now) throw new Error("Date is in the future");
-  return date;
-}
-
-export function isFromArchive() {
-  const dateFromUrl = getDateFromUrl();
-  return !!dateFromUrl;
 }
 
 export function formatDate(date) {

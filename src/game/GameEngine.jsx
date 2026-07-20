@@ -12,11 +12,13 @@ import { useLocation } from "react-router-dom";
 
 import { maxChars, difficultyInfo, changes } from "../utils/constants.js";
 
-import { setSeed, rand, shuffle } from "../utils/randomSeed.js";
+import { setSeed, rand, shuffle } from "../utils/random.js";
 
 import { getData, saveData } from "../utils/storage.js";
 
-import { getDateFromUrl, formatToDays } from "../utils/date.js";
+import { formatToDays } from "../utils/date.js";
+
+import { getDateFromUrl, getCodeFromUrl, getGameMode } from "../utils/url.js";
 
 const GameContext = createContext(null);
 export default function GameEngine({ children, onMessage }) {
@@ -36,8 +38,7 @@ export default function GameEngine({ children, onMessage }) {
     loadResources();
   }, []);
 
-  // difficulty & date
-  // const [difficulty, setDifficulty] = useState(null);
+  // date
   const [date, setDate] = useState(null);
 
   // allData reducer
@@ -45,34 +46,55 @@ export default function GameEngine({ children, onMessage }) {
     const newState = structuredClone(state);
     switch (action.type) {
       case "setDay": {
-        const dateSeed = formatToDays(action.date);
-        const dateKey = dateSeed.toString();
+        const gameMode = getGameMode();
         newState.days ??= {};
-        newState.days[dateKey] ??= {
+        newState.pracs ??= {};
+
+        let mode;
+        let gameSeed;
+        if (gameMode !== "practice") {
+          mode = newState.days;
+          gameSeed = formatToDays(date);
+        } else {
+          mode = newState.pracs;
+          gameSeed = getCodeFromUrl();
+        }
+
+        mode[gameSeed] ??= {
           unlockedDifficulties: [difficultyInfo.default],
           games: {},
           currentDifficulty: action.difficulty || difficultyInfo.default,
         };
+
         if (
-          !newState.days[dateKey].unlockedDifficulties.includes(
-            newState.days[dateKey].currentDifficulty,
+          !mode[gameSeed].unlockedDifficulties.includes(
+            mode[gameSeed].currentDifficulty,
           )
         )
           throw new Error(
             "difficulty:",
-            newState[dateKey].currentDifficulty,
+            mode[gameSeed].currentDifficulty,
             "is not unlocked",
           );
-        newState.currentDay = newState.days[dateKey];
-        newState.dateKey = dateKey;
+
+        if (gameMode !== "practice") {
+          newState.dateKey = gameSeed;
+        } else {
+          newState.pracCode = gameSeed;
+        }
+
+        newState.currentDay = mode[gameSeed];
         const difficulty = newState.currentDay.currentDifficulty;
+
         const seed =
-          dateSeed * difficultyInfo.difficulties[difficulty].seedMult;
+          gameSeed * difficultyInfo.difficulties[difficulty].seedMult;
+
         if (!newState.currentDay.games[difficulty]) {
           const path = makeGame(
             seed,
             difficultyInfo.difficulties[difficulty].steps,
           );
+
           const start = path[0];
           const end = path.at(-1);
           newState.currentDay.games[difficulty] = {
@@ -83,6 +105,7 @@ export default function GameEngine({ children, onMessage }) {
             guess: "",
           };
         }
+
         newState.currentGame = newState.currentDay.games[difficulty];
         break;
       }
@@ -124,6 +147,7 @@ export default function GameEngine({ children, onMessage }) {
   }, getData());
 
   useEffect(() => {
+    console.log("allData changed");
     saveData(allData);
   }, [allData]);
 
@@ -275,7 +299,7 @@ export default function GameEngine({ children, onMessage }) {
 
   useEffect(() => {
     if (resources) {
-      allDataDispatch({ type: "setDay", date });
+      allDataDispatch({ type: "setDay" });
     }
   }, [date, allData.currentDay?.currentDifficulty]);
 

@@ -1,6 +1,7 @@
 # Word Link
 
 This is a word game created using React and Vite.
+This project was already in progress before initial commit.
 
 ## Technologies
 
