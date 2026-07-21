@@ -7,11 +7,16 @@ import { getData } from "../../utils/storage";
 import { formatToDays } from "../../utils/date";
 
 export default function HomeLink() {
-  const data = getData() || {};
-  const dateKey = data.dateKey || null;
-  const today = formatToDays(Date.now()).toString();
+  const data = getData();
+  const gameMode = data.lastGameMode || "daily";
   let search;
-  if (dateKey && dateKey !== today) search = `archive=${dateKey}`;
+  if (gameMode === "archive") {
+    const dateKey = data.dateKey;
+    if (dateKey !== undefined) search = `archive=${dateKey}`;
+  } else if (gameMode === "practice") {
+    const pracCode = data.pracCode;
+    if (pracCode !== undefined) search = `practice=${pracCode}`;
+  }
   return (
     <div className={styles.nav}>
       <Link to={{ pathname: "/", search }}>&#x276E; home</Link>

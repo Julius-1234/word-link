@@ -2,6 +2,8 @@ import { useContext, createContext, useEffect, useState } from "react";
 
 import { getSettings, saveSettings } from "../utils/storage";
 
+import MessageDisplay from "../components/MessageDisplay/MessageDisplay.jsx";
+
 const SettingsContext = createContext(null);
 export default function SettingsProvider({ children }) {
   const [settings, setSettings] = useState(

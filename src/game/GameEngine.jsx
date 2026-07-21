@@ -20,8 +20,12 @@ import { formatToDays } from "../utils/date.js";
 
 import { getDateFromUrl, getCodeFromUrl, getGameMode } from "../utils/url.js";
 
+import { useMessage } from "../providers/MessageProvider.jsx";
+
 const GameContext = createContext(null);
-export default function GameEngine({ children, onMessage }) {
+export default function GameEngine({ children }) {
+  const onMessage = useMessage();
+
   const location = useLocation();
 
   // resources
@@ -47,6 +51,8 @@ export default function GameEngine({ children, onMessage }) {
     switch (action.type) {
       case "setDay": {
         const gameMode = getGameMode();
+        newState.lastGameMode = gameMode;
+
         newState.days ??= {};
         newState.pracs ??= {};
 
@@ -147,7 +153,6 @@ export default function GameEngine({ children, onMessage }) {
   }, getData());
 
   useEffect(() => {
-    console.log("allData changed");
     saveData(allData);
   }, [allData]);
 

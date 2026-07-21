@@ -46,17 +46,6 @@ export function getData() {
   if (!data) data = {};
   else data = JSON.parse(atob(data));
   data = { days: {}, pracs: {}, ...data };
-  /*
-  if (data.dateKey) data.currentDay = data.days[data.dateKey] || null;
-  if (data.currentDay?.currentDifficulty)
-    data.currentGame =
-      data.currentDay.games[data.currentDay.currentDifficulty] || null;
-
-  if (data.pracCode) data.currentPrac = data.pracs[data.pracCode] || null;
-  if (data.currentPrac?.currentDifficulty)
-    data.currentPracGame =
-      data.currentPrac.games[data.currentPrac.pracCode] || null;*/
-
   return data;
 }
 
@@ -66,6 +55,7 @@ export function saveData(data) {
     pracs: data.pracs,
     dateKey: data.dateKey,
     pracCode: data.pracCode,
+    lastGameMode: data.lastGameMode,
   };
   localStorage.setItem("data", btoa(JSON.stringify(cleaned)));
 }
