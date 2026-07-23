@@ -7,6 +7,7 @@ export default function StatsTable({ rows }) {
     <table className={styles.table}>
       <tbody>
         <tr>
+          {" "}
           <th />
           {difficulties.map((diff) => (
             <th>{difficultyInfo.difficulties[diff].displayName}</th>
@@ -33,4 +34,16 @@ export function createRow(data, func) {
     row[diff] = func(data[diff]);
   }
   return row;
+}
+
+export function sortIntoDiffs(data) {
+  const result = {};
+  for (const diff of difficulties) {
+    const all = Object.keys(data)
+      .map((item) => data[item].games[diff])
+      .filter((item) => !!item)
+      .filter((item) => item.found.length > 0);
+    result[diff] = all;
+  }
+  return result;
 }
