@@ -1,7 +1,8 @@
-import { useMemo } from "react";
+/*import { useMemo } from "react";
 import { difficultyInfo } from "../../utils/constants.js";
 import styles from "./AllStats.module.scss";
 import { getData } from "../../utils/storage.js";
+
 
 export default function AllStats() {
   const data = getData();
@@ -9,13 +10,13 @@ export default function AllStats() {
   const difficulties = difficultyInfo.order;
   useMemo(() => {
     for (const difficulty of difficulties) {
-      prossesedInfo.difficultyStats[difficulty] = {};
-      const stats = prossesedInfo.difficultyStats[difficulty];
-      stats.all = Object.values(data.days)
+      const stats = (prossesedInfo.difficultyStats[difficulty] = {});
+      const allDays = Object.values(data.days)
         .map((day) => day.games[difficulty])
         .filter((item) => item !== undefined);
-      stats.daysWithWins = stats.all.filter((day) => day.found.length > 0);
-      stats.wins = stats.all.reduce(
+
+      stats.daysWithWins = allDays.filter((day) => day.found.length > 0);
+      stats.wins = allDays.reduce(
         (total, next) => total + next.found.length,
         0,
       );
@@ -53,5 +54,45 @@ export default function AllStats() {
         )}
       </tbody>
     </table>
+  );
+}*/
+
+import { useMemo } from "react";
+import StatsTable, { createRow } from "../StatsTable/StatsTable";
+import { getData } from "../../utils/storage.js";
+import { difficultyInfo } from "../../utils/constants.js";
+
+export default function AllStats() {
+  const data = getData();
+  const difficulties = difficultyInfo.order;
+  const rows = useMemo(() => {
+    const diffStats = {};
+    const allDays = data.days;
+    for (const diff of difficulties) {
+      const allOfDiff = Object.keys(allDays)
+        .map((day) => allDays[day].games[diff])
+        .filter((day) => !!day)
+        .filter((day) => day.found.length > 0);
+      diffStats[diff] = allOfDiff;
+    }
+    console.log(diffStats);
+    console.log(diffStats);
+    return [
+      {
+        displayName: "days with 1+ paths",
+        diffs: createRow(diffStats, (data) => data.length),
+      },
+      {
+        displayName: "total paths",
+        diffs: createRow(diffStats, (data) =>
+          data.reduce((total, next) => total + next.found.length, 0),
+        ),
+      },
+    ];
+  }, [data]);
+  return (
+    <>
+      <StatsTable rows={rows} />
+    </>
   );
 }
