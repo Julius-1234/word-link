@@ -1,0 +1,13 @@
+$scrollingTop: inset 0 10px 10px -10px var(--accent);
+$scrollingBottom: inset 0 -10px 10px -10px var(--accent);
+.scrollingTop {
+  box-shadow: $scrollingTop;
+}
+.scrollingBottom {
+  box-shadow: $scrollingBottom;
+}
+.scrollingTop.scrollingBottom {
+  box-shadow:
+    #{$scrollingTop},
+    #{$scrollingBottom};
+}

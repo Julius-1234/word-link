@@ -1,5 +1,6 @@
 import styles from "./GameStats.module.scss";
 import { difficultyInfo } from "../../utils/constants.js";
+import ShadowScrollBox from "../ShadowScrollBox/ShadowScrollBox.jsx";
 import { getData } from "../../utils/storage.js";
 import {
   formatDate,
@@ -28,7 +29,7 @@ export default function GameStats({ date }) {
                 {pair[1].start} &rarr; {pair[1].end}
               </b>
             </div>
-            <div className={`${styles.gameStatsInfo} scrollbar-styles`}>
+            <ShadowScrollBox classNames={styles.gameStatsInfo}>
               {paths
                 .sort((a, b) => {
                   a.length - b.length;
@@ -46,7 +47,7 @@ export default function GameStats({ date }) {
                     <div className={styles.gameStatsPathEnd}>{pair[1].end}</div>
                   </div>
                 ))}
-            </div>
+            </ShadowScrollBox>
           </div>
         );
       })}
