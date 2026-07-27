@@ -2,6 +2,7 @@ import styles from "./HomeFooter.module.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useGame } from "../../game/GameEngine";
+import ConfirmSequence from "../ConfirmSequence/ConfirmSequence.jsx";
 
 export default function HomeFooter() {
   const { clearPath } = useGame();
@@ -20,14 +21,11 @@ export default function HomeFooter() {
   return (
     <footer className={styles.homeFooter}>
       <Link to="/stats">stats</Link>
-      <div
+      <ConfirmSequence
+        sequence={["clear", "confirm?"]}
+        func={clearPath}
         className={styles.clearPath}
-        tabIndex={0}
-        onClick={onClick}
-        onBlur={onBlur}
-      >
-        {clearStatus}
-      </div>
+      />
     </footer>
   );
 }
