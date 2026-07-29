@@ -14,7 +14,7 @@ export default function Game({ path, start, end, guess }) {
   return (
     <div className={styles.gameBox}>
       <div className={styles.gameStartWord}>{start}</div>
-      <ShadowScrollBox classNames={styles.scrollingGroup}>
+      <ShadowScrollBox className={styles.scrollingGroup}>
         {words}
       </ShadowScrollBox>
       {last}

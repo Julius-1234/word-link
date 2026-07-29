@@ -25,7 +25,7 @@ export default function Settings() {
       <div className={styles.settings}>
         <br />
         Colour Theme:
-        <div className={styles.colourTheme}>
+        <div className={styles.radioSetting}>
           {colourThemes.map((theme, i) => {
             return (
               <label key={i} data-colour-scheme={theme}>
@@ -39,7 +39,7 @@ export default function Settings() {
                   }
                   onChange={(e) => setSetting("colourScheme", theme)}
                 />
-                <div className={styles.colourThemePreview}>{theme}</div>
+                <div className={styles.radioPreview}>{theme}</div>
               </label>
             );
           })}
@@ -57,7 +57,7 @@ export default function Settings() {
         </div>
         <br />
         Font:
-        <div className={styles.fonts}>
+        <div className={styles.radioSetting}>
           {fonts.map((font, i) => {
             return (
               <label key={i} data-font={font}>
@@ -70,7 +70,7 @@ export default function Settings() {
                   }
                   onChange={(e) => setSetting("font", font)}
                 />
-                <div className={styles.fontPreview}>{font}</div>
+                <div className={styles.radioPreview}>{font}</div>
               </label>
             );
           })}

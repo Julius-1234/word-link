@@ -4,6 +4,7 @@ import ArchiveKey from "../../components/ArchiveKey/ArchiveKey.jsx";
 import HomeLink from "../../components/HomeLink/HomeLink.jsx";
 
 export default function Archive() {
+  //return <div className={styles.archive}></div>;
   return (
     <div className={styles.archive}>
       <HomeLink />

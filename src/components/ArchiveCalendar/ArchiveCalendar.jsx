@@ -81,18 +81,24 @@ export default function ArchiveCalendar() {
       window.removeEventListener("resize", checkForNewDay);
     };
   }, []);
+  const toTop = () => {
+    containerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
-    <div
-      ref={containerRef}
-      onScroll={!loadedAll ? checkForNewDay : null}
-      className={`${styles.archiveCalendarBox} scrollbar-styles`}
-    >
+    <div className={styles.archiveCalendar}>
       <div className={styles.archiveCalendarSpecial}>
         Today:
         {makeDay(today, styles.today)}
         {!isToday(current) && <>Current Game: {makeDay(current)}</>}
       </div>
-      <div className={styles.archiveCalendar}>
+      <div className={styles.toTop} onClick={toTop}>
+        to top
+      </div>
+      <div
+        ref={containerRef}
+        onScroll={!loadedAll ? checkForNewDay : null}
+        className={`${styles.archiveCalendarBox} scrollbar-styles`}
+      >
         {days}
         {loadedAll && <div className={styles.archiveEnd}>End Of Archive</div>}
       </div>

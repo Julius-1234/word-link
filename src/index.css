@@ -50,6 +50,9 @@ a {
   box-sizing: border-box;
   height: 100dvh;
   min-width: 200px;
+  & > * {
+    height: 100%;
+  }
 }
 
 html,

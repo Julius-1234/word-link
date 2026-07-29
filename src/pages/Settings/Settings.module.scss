@@ -1,4 +1,4 @@
-.colourThemePreview {
+.radioPreview {
   color: var(--accent-colour);
   background: var(--accent);
   padding: 5px;
@@ -7,33 +7,17 @@
   user-select: none;
 }
 
-.colourTheme {
+.radioSetting {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.colourTheme input {
+.radioSetting input {
   display: none;
-}
-
-.fontPreview {
-  color: var(--accent-colour);
-  background: var(--accent);
-  padding: 5px;
-  border: solid var(--accent-colour) 2px;
-  border-radius: 2px;
-  user-select: none;
-}
-
-.fonts {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.fonts input {
-  display: none;
+  &:checked + .radioPreview {
+    outline: solid 5px var(--accent);
+  }
 }
 
 input[type="checkbox"] {

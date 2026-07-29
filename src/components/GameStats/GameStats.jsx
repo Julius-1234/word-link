@@ -29,7 +29,7 @@ export default function GameStats({ date }) {
                 {pair[1].start} &rarr; {pair[1].end}
               </b>
             </div>
-            <ShadowScrollBox classNames={styles.gameStatsInfo}>
+            <ShadowScrollBox className={styles.gameStatsInfo}>
               {paths
                 .sort((a, b) => {
                   a.length - b.length;

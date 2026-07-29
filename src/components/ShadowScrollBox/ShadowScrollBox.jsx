@@ -1,7 +1,7 @@
 import styles from "./ShadowScrollBox.module.scss";
 import { useEffect, useState, useRef } from "react";
 
-export default function ShadowScrollBox({ children, classNames }) {
+export default function ShadowScrollBox({ children, className }) {
   const elRef = useRef(null);
   const [scrollingTop, setScrollingTop] = useState(false);
   const [scrollingBottom, setScrollingBottom] = useState(false);
@@ -26,7 +26,7 @@ export default function ShadowScrollBox({ children, classNames }) {
   return (
     <div
       ref={elRef}
-      className={`scrollbar-styles ${classNames} ${scrollingTop ? styles.scrollingTop : ""} ${scrollingBottom ? styles.scrollingBottom : ""}`}
+      className={`scrollbar-styles ${className} ${scrollingTop ? styles.scrollingTop : ""} ${scrollingBottom ? styles.scrollingBottom : ""}`}
       onScroll={check}
     >
       {children}
