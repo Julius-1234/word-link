@@ -10,13 +10,14 @@
   display: flex;
   flex-direction: row;
   & > * {
-    background: var(--accent);
-    color: var(--accent-colour);
     margin: 2px;
     height: 2em;
-    border-radius: 3px;
     user-select: none;
     flex: 1;
+    &:active {
+      background: var(--accent-colour);
+      color: var(--accent);
+    }
   }
 }
 

@@ -1,0 +1,11 @@
+.box {
+  user-select: none;
+  background: var(--accent);
+  color: var(--accent-colour);
+  padding: 0 5px;
+  border-radius: 3px;
+  &:active {
+    background: var(--accent-colour);
+    color: var(--accent);
+  }
+}

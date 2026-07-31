@@ -31,9 +31,7 @@ export default function GameStats({ date }) {
             </div>
             <ShadowScrollBox className={styles.gameStatsInfo}>
               {paths
-                .sort((a, b) => {
-                  a.length - b.length;
-                })
+                .sort((a, b) => a.length - b.length)
                 .map((path, i) => (
                   <div className={styles.gameStatsPath} key={i}>
                     <div className={styles.gameStatsPathStart}>

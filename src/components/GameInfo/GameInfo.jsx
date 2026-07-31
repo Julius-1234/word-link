@@ -6,6 +6,7 @@ import { getGameMode } from "../../utils/url.js";
 import { newPracticeCode } from "../../utils/random.js";
 import { useMessage } from "../../providers/MessageProvider.jsx";
 import ConfirmSequence from "../ConfirmSequence/ConfirmSequence.jsx";
+import Btn from "../Btn/Btn.jsx";
 
 export default function GameInfo({ date }) {
   const navigate = useNavigate();
@@ -28,13 +29,13 @@ export default function GameInfo({ date }) {
       <GameMode />
       {gameMode === "practice" && (
         <>
-          <button onClick={copyURL}>Copy URL</button>
-          <button>
+          <Btn onClick={copyURL}>Copy URL</Btn>
+          <Btn>
             <ConfirmSequence
               sequence={["new prac", "confirm?"]}
               func={newPrac}
             />
-          </button>
+          </Btn>
         </>
       )}
       {gameMode !== "practice" && <div>{formatDate(date)} </div>}

@@ -1,6 +1,7 @@
 import styles from "./Keyboard.module.scss";
 import { symbols } from "../../utils/constants";
 import { useSettings } from "../../providers/SettingsProvider";
+import Btn from "../Btn/Btn.jsx";
 
 export default function Keyboard({ onInput }) {
   const { settings } = useSettings();
@@ -9,38 +10,38 @@ export default function Keyboard({ onInput }) {
       if (key === " ")
         return <div key={i} className={styles.keyboardGap}></div>;
       return (
-        <button
+        <Btn
           key={key}
           onMouseDown={() => {
             onInput(key);
           }}
         >
           {key}
-        </button>
+        </Btn>
       );
     });
   };
 
   const back = (
-    <button
+    <Btn
       className={styles.keyboardBig}
       onMouseDown={() => {
         onInput("backspace");
       }}
     >
       {symbols.keyBack}
-    </button>
+    </Btn>
   );
 
   const enter = (
-    <button
+    <Btn
       className={styles.keyboardBig}
       onMouseDown={() => {
         onInput("enter");
       }}
     >
       {symbols.keyEnter}
-    </button>
+    </Btn>
   );
 
   return (

@@ -1,6 +1,7 @@
 import GameStats from "../../components/GameStats/GameStats.jsx";
 import AllStats from "../../components/AllStats/AllStats.jsx";
 import PracStats from "../../components/PracStats/PracStats.jsx";
+import Title from "../../components/Title/Title.jsx";
 
 import styles from "./MainStats.module.scss";
 
@@ -10,11 +11,11 @@ export default function MainStats() {
   return (
     <div>
       <HomeLink />
-      <div className={styles.title}>All Stats</div>
+      <Title className={styles.title}>All Stats</Title>
       <AllStats />
-      <div className={styles.title}>Current Game Stats</div>
+      <Title className={styles.title}>Current Game Stats</Title>
       <GameStats />
-      <div className={styles.title}>Practice Stats</div>
+      <Title className={styles.title}>Practice Stats</Title>
       <PracStats />
     </div>
   );

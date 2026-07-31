@@ -1,4 +1,5 @@
 import styles from "./GameSelect.module.scss";
+import Btn from "../Btn/Btn";
 
 export default function GameSelect({
   difficulty,
@@ -10,19 +11,19 @@ export default function GameSelect({
     <div className={styles.gameNav}>
       {difficultyInfo.order.map((key, i) => {
         const item = difficultyInfo.difficulties[key];
-        let className = styles.locked;
-        if (unlockedDifficulties?.includes(key)) className = styles.unlocked;
-        if (difficulty === key) className = styles.selected;
+        let mode = styles.locked;
+        if (unlockedDifficulties?.includes(key)) mode = styles.unlocked;
+        if (difficulty === key) mode = styles.selected;
         return (
-          <button
+          <Btn
             key={i}
-            className={className}
+            className={`${mode} ${styles.btn}`}
             onClick={() => {
               setDifficulty(key);
             }}
           >
             {item.displayName}
-          </button>
+          </Btn>
         );
       })}
     </div>
