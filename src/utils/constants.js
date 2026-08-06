@@ -6,19 +6,19 @@ export const difficultyInfo = {
   order: ["easy", "medium", "hard"],
   difficulties: {
     easy: {
-      steps: 3,
+      steps: 2,
       seedMult: 1,
       displayName: "easy",
       beatenStyles: { backgroundColor: "#f81", color: "#333" },
     },
     medium: {
-      steps: 6,
+      steps: 4,
       seedMult: 2,
       displayName: "normal",
       beatenStyles: { backgroundColor: "#ff0", color: "#333" },
     },
     hard: {
-      steps: 8,
+      steps: 6,
       seedMult: 3,
       displayName: "hard",
       beatenStyles: { backgroundColor: "#0f0", color: "#333" },

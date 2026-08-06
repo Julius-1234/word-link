@@ -96,13 +96,11 @@ export default function GameEngine({ children }) {
           gameSeed * difficultyInfo.difficulties[difficulty].seedMult;
 
         if (!newState.currentDay.games[difficulty]) {
-          const path = makeGame(
+          const { start, end } = makeGame(
             seed,
             difficultyInfo.difficulties[difficulty].steps,
           );
 
-          const start = path[0];
-          const end = path.at(-1);
           newState.currentDay.games[difficulty] = {
             start: start,
             end: end,
@@ -158,7 +156,17 @@ export default function GameEngine({ children }) {
 
   // makeGame
   function makeGame(seed, steps) {
-    const dfs = (path, steps) => {
+    setSeed(seed);
+    const startPool = Object.keys(resources.generation);
+    const startIndex = Math.floor(rand() * startPool.length);
+    const startWord = startPool[startIndex];
+    const startLink = resources.generation[startWord];
+
+    const endPool = startLink[steps - 1];
+    const endIndex = Math.floor(rand() * endPool.length);
+    const endWord = endPool[endIndex];
+
+    /*const dfs = (path, steps) => {
       steps -= 1;
       let neighbors = resources.generation[path.at(-1)].filter(
         (w) => !path.includes(w),
@@ -176,7 +184,9 @@ export default function GameEngine({ children }) {
     const startPool = Object.keys(resources.generation);
     const start = startPool[Math.floor(rand() * startPool.length)];
     const path = [start];
-    return dfs(path, steps);
+    return dfs(path, steps);*/
+
+    return { start: startWord, end: endWord };
   }
 
   //guessmaking logic

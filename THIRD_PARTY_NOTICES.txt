@@ -1,0 +1,5 @@
+Third-Party Notices
+
+This project includes word list resources derived from SCOWL (Spell Checker Oriented Word Lists).
+
+The applicable license and copyright notice are provided in the licenses folder.
