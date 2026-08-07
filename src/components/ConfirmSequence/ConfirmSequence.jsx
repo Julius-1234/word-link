@@ -1,5 +1,4 @@
 import { useState } from "react";
-import styles from "./ConfirmSequence.module.scss";
 
 export default function ({ sequence, func, className }) {
   const [status, setStatus] = useState(0);
@@ -16,12 +15,8 @@ export default function ({ sequence, func, className }) {
     setStatus(0);
   };
   return (
-    <div
-      className={`${styles.holder} ${className ? className : ""}`}
-      onClick={onClick}
-      onBlur={onBlur}
-    >
+    <span className={className} onClick={onClick} onBlur={onBlur} tabIndex={0}>
       {sequence[status]}
-    </div>
+    </span>
   );
 }
