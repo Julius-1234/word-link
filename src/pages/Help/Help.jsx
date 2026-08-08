@@ -63,6 +63,10 @@ export default function Help() {
             <li>Rearrange the letters in the word</li>
           </ul>
         </p>
+        <p>
+          Once you complete a path (i.e. get from the start word to the end
+          word), you unlock the next difficulty.
+        </p>
         <p>That's about it!</p>
         <Title className={styles.header2}>Features</Title>
         <p>

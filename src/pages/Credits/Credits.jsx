@@ -1,6 +1,7 @@
 import HomeLink from "../../components/HomeLink/HomeLink";
 import Title from "../../components/Title/Title.jsx";
 import styles from "./Credits.module.scss";
+import { Link } from "react-router-dom";
 
 export default function Credits() {
   return (
@@ -14,7 +15,8 @@ export default function Credits() {
         </p>
         <p>
           Created by Julius Williams. <br />
-          Official repositry for this website:
+          Official github repositry for this website:{" "}
+          <Link href="https://github.com/Julius-1234/word-link">here</Link>
         </p>
         <Title className={styles.header2}>Dictionary resources:</Title>
         <p>
@@ -25,10 +27,14 @@ export default function Credits() {
         </p>
         <Title>Base dictionary:</Title>
         <p>
-          SCOWL (Spell Checker Oriented Word Lists)
+          ESBD (English Speller Database), formerly known as SCOWL (Spell
+          Checker Oriented Word Lists)
           <br />
-          This project uses a dictionary based on the SCOWL word lists. You can
-          find the license for the SCOWL lists in the licenses folder, or here
+          This project uses a dictionary based on the ESBD word lists. You can
+          find the license for the ESBD lists in the licenses folder or{" "}
+          <Link href="https://github.com/en-wl/wordlist/blob/v2/Copyright">
+            here
+          </Link>
         </p>
         <Title className={styles.header2}>Other resources:</Title>
         <p>
@@ -63,7 +69,8 @@ export default function Credits() {
         </p>
         <Title className={styles.header1}>Other resources:</Title>
         <p>
-          Fonts are used from by Google Fonts.
+          Fonts are used from by{" "}
+          <Link href="https://fonts.google.com/">Google Fonts</Link>
           <br />
           This website was built using React and Vite.
         </p>

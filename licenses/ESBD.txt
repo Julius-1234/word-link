@@ -1,4 +1,4 @@
-This project creates resources derived from SCOWL (English Speller Database).
+This project creates resources derived from ESBD (English Speller Database).
 
 
 Copyright 2000-2026 by Kevin Atkinson
