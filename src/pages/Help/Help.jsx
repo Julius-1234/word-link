@@ -1,6 +1,7 @@
 import HomeLink from "../../components/HomeLink/HomeLink.jsx";
 import Title from "../../components/Title/Title.jsx";
 import styles from "./Help.module.scss";
+import { Link } from "react-router-dom";
 
 export default function Help() {
   return (
@@ -14,6 +15,10 @@ export default function Help() {
           letters, change letters, and even rearrange letters to reach the
           target word. More details can be found in the "How to Play" section
           below.
+        </p>
+        <p>
+          Created by Julius Williams. You can find the credits for this website{" "}
+          <Link to="/credits">here</Link>.
         </p>
         <Title className={styles.header2}>Why you should play this game</Title>
         <p>
@@ -41,6 +46,56 @@ export default function Help() {
             so you can continue to play even after you have completed the daily
             challenge.
           </p>
+        </p>
+        <Title className={styles.header2}>How to Play</Title>
+        <p>
+          The goal of this game is to reach the target word by modifying the
+          starting word. You can add letters, remove letters, change letters,
+          and rearrange letters to reach the target word. You can do this in as
+          many steps as you need, but each change must result in a valid word.
+        </p>
+        <p>
+          You can:
+          <ul>
+            <li>Add 1 letter to the word</li>
+            <li>Remove 1 letter from the word</li>
+            <li>Change 1 letter in the word</li>
+            <li>Rearrange the letters in the word</li>
+          </ul>
+        </p>
+        <p>That's about it!</p>
+        <Title className={styles.header2}>Features</Title>
+        <p>
+          As mentioned earlier, this game offers several extra features to
+          enhance your experience. These features are all accessible from the{" "}
+          <Link to="/">home</Link> page.
+          <p>
+            <Title>Extra game modes</Title>
+            You can play extra game modes from the dropdown list in home. You
+            can play daily, practice, or archive.
+          </p>
+          <p>
+            <Title>
+              <Link to="/archive" className={styles.titleLink}>
+                archive
+              </Link>
+            </Title>
+            You can play games from previous days in the archive.
+          </p>
+          <p>
+            <Title>
+              <Link className={styles.titleLink} to="/stats">
+                stats
+              </Link>
+            </Title>
+            You can view your stats to see how you are doing. There are
+            practice, daily, and current game stats. Current game stats show you
+            all the paths you have found in the current game.
+          </p>
+        </p>
+        <p>
+          If something doesn't make sense, try playing the game to see how it
+          works!
         </p>
       </div>
     </>

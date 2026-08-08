@@ -11,12 +11,32 @@ import {
 
 export default function GameStats({ date }) {
   const stats = getData();
-  date ??= formatFromDays(stats.dateKey) || new Date();
-  const currentDay = stats.days?.[formatToDays(date)] || {};
-  const games = currentDay.games ? Object.entries(currentDay.games) : [];
+  let currentSet;
+  let id;
+  const gameMode = stats.lastGameMode;
+  if (!date) {
+    if (!gameMode) return <div>No stats available</div>;
+    if (gameMode !== "practice") {
+      const key = stats.dateKey;
+      currentSet = stats.days?.[key] || {};
+      id = formatDate(formatFromDays(key));
+    } else {
+      const key = stats.pracCode;
+      currentSet = stats.pracs?.[key] || {};
+      id = key;
+    }
+  } else {
+    currentSet = stats.days?.[formatToDays(date)] || {};
+    id = formatDate(date);
+  }
+
+  const games = currentSet.games ? Object.entries(currentSet.games) : [];
+
   return (
     <div className={styles.gameStatsBox}>
-      <b>{formatDate(new Date(date))}</b>
+      <b>
+        {date ? "archive" : gameMode}: {id}
+      </b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
         if (paths.length === 0) return;
