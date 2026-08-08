@@ -7,7 +7,7 @@ export function getDateFromUrl() {
   const archiveParam = urlParams.get("archive");
   if (!archiveParam) return null;
   const date = formatFromDays(archiveParam);
-  if (date <= archiveStart) throw new Error("Date is before archive start");
+  if (date < archiveStart) throw new Error("Date is before archive start");
   const now = Math.round(Date.now() / msInDay) * msInDay;
   if (date > now) throw new Error("Date is in the future");
   return date;

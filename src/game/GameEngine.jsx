@@ -16,7 +16,7 @@ import { setSeed, rand, shuffle } from "../utils/random.js";
 
 import { getData, saveData } from "../utils/storage.js";
 
-import { formatToDays } from "../utils/date.js";
+import { formatFromDays, formatToDays } from "../utils/date.js";
 
 import { getDateFromUrl, getCodeFromUrl, getGameMode } from "../utils/url.js";
 
@@ -32,12 +32,13 @@ export default function GameEngine({ children }) {
   const [resources, setResources] = useState(null);
   useEffect(() => {
     async function loadResources() {
-      const [generation, validation] = await Promise.all([
+      const [generation, validation, dailys] = await Promise.all([
         fetch("/generation.json").then((res) => res.json()),
         fetch("/validation.json").then((res) => res.json()),
+        fetch("/dailys.json").then((res) => res.json()),
       ]);
 
-      setResources({ generation, validation });
+      setResources({ generation, validation, dailys });
     }
     loadResources();
   }, []);
@@ -96,10 +97,26 @@ export default function GameEngine({ children }) {
           gameSeed * difficultyInfo.difficulties[difficulty].seedMult;
 
         if (!newState.currentDay.games[difficulty]) {
-          const { start, end } = makeGame(
+          let game;
+          if (gameMode !== "practice") {
+            const dateKey = formatFromDays(newState.dateKey);
+            const dateString = `${dateKey.getFullYear()}-${String(
+              dateKey.getMonth() + 1,
+            ).padStart(2, "0")}-${String(dateKey.getDate()).padStart(2, "0")}`;
+
+            const setGameDate = resources.dailys?.[dateString];
+            const setGame = setGameDate?.[difficulty];
+            if (setGame) {
+              game = setGame;
+            }
+          }
+
+          game ??= makeGame(
             seed,
             difficultyInfo.difficulties[difficulty].steps,
           );
+
+          const [start, end] = game;
 
           newState.currentDay.games[difficulty] = {
             start: start,
@@ -154,7 +171,6 @@ export default function GameEngine({ children }) {
     saveData(allData);
   }, [allData]);
 
-  // makeGame
   function makeGame(seed, steps) {
     setSeed(seed);
     const startPool = Object.keys(resources.generation);
@@ -166,27 +182,7 @@ export default function GameEngine({ children }) {
     const endIndex = Math.floor(rand() * endPool.length);
     const endWord = endPool[endIndex];
 
-    /*const dfs = (path, steps) => {
-      steps -= 1;
-      let neighbors = resources.generation[path.at(-1)].filter(
-        (w) => !path.includes(w),
-      );
-      neighbors = shuffle(neighbors);
-      if (neighbors.length === 0) return [];
-      if (steps <= 0) return [...path, neighbors[0]];
-      for (const n of neighbors) {
-        const testPath = dfs([...path, n], steps);
-        if (testPath.length > 0) return testPath;
-      }
-      return [];
-    };
-    setSeed(seed);
-    const startPool = Object.keys(resources.generation);
-    const start = startPool[Math.floor(rand() * startPool.length)];
-    const path = [start];
-    return dfs(path, steps);*/
-
-    return { start: startWord, end: endWord };
+    return [startWord, endWord];
   }
 
   //guessmaking logic

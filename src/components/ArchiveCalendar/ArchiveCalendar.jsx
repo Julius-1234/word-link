@@ -53,7 +53,7 @@ export default function ArchiveCalendar() {
   };
   const addDay = () => {
     lastDayRef.current.setDate(lastDayRef.current.getDate() - 1);
-    if (formatToDays(lastDayRef.current) <= formatToDays(archiveStart)) {
+    if (formatToDays(lastDayRef.current) < formatToDays(archiveStart)) {
       setLoadedAll(true);
       return;
     }
