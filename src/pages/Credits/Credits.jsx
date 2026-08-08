@@ -1,7 +1,6 @@
 import HomeLink from "../../components/HomeLink/HomeLink";
 import Title from "../../components/Title/Title.jsx";
 import styles from "./Credits.module.scss";
-import { Link } from "react-router-dom";
 
 export default function Credits() {
   return (
@@ -16,7 +15,7 @@ export default function Credits() {
         <p>
           Created by Julius Williams. <br />
           Official github repositry for this website:{" "}
-          <Link href="https://github.com/Julius-1234/word-link">here</Link>
+          <a href="https://github.com/Julius-1234/word-link">here</a>
         </p>
         <Title className={styles.header2}>Dictionary resources:</Title>
         <p>
@@ -32,9 +31,7 @@ export default function Credits() {
           <br />
           This project uses a dictionary based on the ESBD word lists. You can
           find the license for the ESBD lists in the licenses folder or{" "}
-          <Link href="https://github.com/en-wl/wordlist/blob/v2/Copyright">
-            here
-          </Link>
+          <a href="https://github.com/en-wl/wordlist/blob/v2/Copyright">here</a>
         </p>
         <Title className={styles.header2}>Other resources:</Title>
         <p>
@@ -70,7 +67,7 @@ export default function Credits() {
         <Title className={styles.header1}>Other resources:</Title>
         <p>
           Fonts are used from by{" "}
-          <Link href="https://fonts.google.com/">Google Fonts</Link>
+          <a href="https://fonts.google.com/">Google Fonts</a>
           <br />
           This website was built using React and Vite.
         </p>

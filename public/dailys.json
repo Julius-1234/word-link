@@ -1,8 +1,19 @@
 {
-  "2026-01-01": {
+  "2027-01-01": {
     "easy": ["new", "year"]
   },
   "2026-08-08": {
-    "easy": ["word", "link"]
+    "medium": ["word", "link"]
+  },
+  "2026-12-26": {
+    "medium": ["snow", "man"]
+  },
+  "2027-03-28": {
+    "hard": ["bun", "bunny"]
+  },
+  "2026-10-31": {
+    "easy": ["cat", "candy"],
+    "medium": ["ghost", "boo"],
+    "hard": ["trick", "treat"]
   }
 }
