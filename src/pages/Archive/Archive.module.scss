@@ -5,4 +5,5 @@
 .archive {
   display: grid;
   grid-template-rows: auto auto auto minmax(0, 1fr);
+  height: 100%;
 }
