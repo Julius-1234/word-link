@@ -19,7 +19,7 @@ export default function HomeLink() {
 
   const search =
     gameMode === modes.archive || gameMode === modes.practice
-      ? (search = toQueryString(gameMode, loaded.key))
+      ? toQueryString(gameMode, loaded.key)
       : null;
 
   return (
