@@ -1,8 +1,9 @@
 import styles from "./Game.module.scss";
-
+import { useGame } from "../../game/GameEngine";
 import ShadowScrollBox from "../ShadowScrollBox/ShadowScrollBox";
 
-export default function Game({ path, start, end, guess }) {
+export default function Game() {
+  const { path, start, end, guess } = useGame();
   const words = path?.map((word) => {
     return (
       <div key={word} className={styles.gamePathWord}>

@@ -11,7 +11,7 @@ This project was already in progress before initial commit.
 
 ## Where to play
 
-This website is yet to be live, but should be soon
+https://word-link-lilac.vercel.app/
 
 ## Repo purpose
 

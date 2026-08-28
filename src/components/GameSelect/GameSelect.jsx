@@ -1,12 +1,11 @@
 import styles from "./GameSelect.module.scss";
 import Btn from "../Btn/Btn";
+import { useGame } from "../../game/GameEngine.jsx";
 
-export default function GameSelect({
-  difficulty,
-  unlockedDifficulties,
-  difficultyInfo,
-  setDifficulty,
-}) {
+export default function GameSelect() {
+  const { difficulty, unlockedDifficulties, difficultyInfo, setDifficulty } =
+    useGame();
+
   return (
     <div className={styles.gameNav}>
       {difficultyInfo.order.map((key, i) => {

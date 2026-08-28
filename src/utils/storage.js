@@ -2,17 +2,14 @@ export function getData() {
   let data = localStorage.getItem("data");
   if (!data) data = {};
   else data = JSON.parse(atob(data));
-  data = { days: {}, pracs: {}, ...data };
+  data = { sets: {}, loaded: {}, ...data };
   return data;
 }
 
 export function saveData(data) {
   const cleaned = {
-    days: data.days,
-    pracs: data.pracs,
-    dateKey: data.dateKey,
-    pracCode: data.pracCode,
-    lastGameMode: data.lastGameMode,
+    sets: data.sets,
+    loaded: data.loaded,
   };
   localStorage.setItem("data", btoa(JSON.stringify(cleaned)));
 }

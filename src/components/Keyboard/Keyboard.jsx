@@ -2,9 +2,11 @@ import styles from "./Keyboard.module.scss";
 import { symbols } from "../../utils/constants";
 import { useSettings } from "../../providers/SettingsProvider";
 import Btn from "../Btn/Btn.jsx";
+import { useGame } from "../../game/GameEngine.jsx";
 
-export default function Keyboard({ onInput }) {
+export default function Keyboard() {
   const { settings } = useSettings();
+  const { keyHandler } = useGame();
   const row = (keys) => {
     return keys.split("").map((key, i) => {
       if (key === " ")
@@ -13,7 +15,7 @@ export default function Keyboard({ onInput }) {
         <Btn
           key={key}
           onMouseDown={() => {
-            onInput(key);
+            keyHandler(key);
           }}
         >
           {key}
@@ -26,7 +28,7 @@ export default function Keyboard({ onInput }) {
     <Btn
       className={styles.keyboardBig}
       onMouseDown={() => {
-        onInput("backspace");
+        keyHandler("backspace");
       }}
     >
       {symbols.keyBack}
@@ -37,7 +39,7 @@ export default function Keyboard({ onInput }) {
     <Btn
       className={styles.keyboardBig}
       onMouseDown={() => {
-        onInput("enter");
+        keyHandler("enter");
       }}
     >
       {symbols.keyEnter}

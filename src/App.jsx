@@ -1,5 +1,5 @@
 import Home from "./pages/Home/Home.jsx";
-import MainStats from "./pages/MainStats/MainStats.jsx";
+import Stats from "./pages/Stats/Stats.jsx";
 import Credits from "./pages/Credits/Credits.jsx";
 import Archive from "./pages/Archive/Archive.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
@@ -11,7 +11,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/stats" element={<MainStats />} />
+        <Route path="/stats" element={<Stats />} />
         <Route path="/credits" element={<Credits />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="/settings" element={<Settings />} />

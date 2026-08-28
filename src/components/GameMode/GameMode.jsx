@@ -2,33 +2,36 @@ import styles from "./GameMode.module.scss";
 
 import { Link } from "react-router-dom";
 
-import { getGameMode } from "../../utils/url.js";
-
 import { newPracticeCode } from "../../utils/random.js";
 
-export default function GameMode() {
-  const gameMode = getGameMode();
+import { modesDisplayName, modes } from "../../utils/modes.js";
+
+import { toQueryString } from "../../utils/url.js";
+
+export default function GameMode({ gameMode }) {
   return (
     <div className={styles.gameInfoSelect}>
-      <div className={styles.gameInfoSelectSelected}>{gameMode} &#x25BE;</div>
+      <div className={styles.gameInfoSelectSelected}>
+        {modesDisplayName(gameMode)} &#x25BE;
+      </div>
       <div className={styles.gameInfoSelectOptions}>
-        {gameMode !== "daily" && (
+        {gameMode !== modes.daily && (
           <Link to="/" className={styles.gameInfoSelectOption}>
-            Daily
+            {modesDisplayName(modes.daily)}
           </Link>
         )}
         <Link to="/archive" className={styles.gameInfoSelectOption}>
-          Archive
+          {modesDisplayName(modes.archive)}
         </Link>
-        {gameMode !== "practice" && (
+        {gameMode !== modes.practice && (
           <Link
             to={{
               pathname: "/",
-              search: `?practice=${newPracticeCode()}`,
+              search: toQueryString(modes.practice, newPracticeCode()),
             }}
             className={styles.gameInfoSelectOption}
           >
-            Practice
+            {modesDisplayName(modes.practice)}
           </Link>
         )}
       </div>

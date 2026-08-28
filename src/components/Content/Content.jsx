@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useGame } from "../../game/GameEngine.jsx";
 import { useSettings } from "../../providers/SettingsProvider.jsx";
 
 import GameSelect from "../GameSelect/GameSelect.jsx";
@@ -8,30 +7,13 @@ import Game from "../Game/Game.jsx";
 import Keyboard from "../Keyboard/Keyboard.jsx";
 
 export default function Content() {
-  const {
-    path,
-    start,
-    end,
-    guess,
-    difficulty,
-    unlockedDifficulties,
-    difficultyInfo,
-    setDifficulty,
-    date,
-    keyHandler,
-  } = useGame();
   const { settings } = useSettings();
   return (
     <>
-      <GameSelect
-        difficulty={difficulty}
-        unlockedDifficulties={unlockedDifficulties}
-        difficultyInfo={difficultyInfo}
-        setDifficulty={setDifficulty}
-      />
-      <GameInfo date={date} />
-      <Game path={path} start={start} end={end} guess={guess} />
-      {(settings.other.keyboard ?? true) && <Keyboard onInput={keyHandler} />}
+      <GameSelect />
+      <GameInfo />
+      <Game />
+      {(settings.other.keyboard ?? true) && <Keyboard />}
     </>
   );
 }

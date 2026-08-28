@@ -1,13 +1,17 @@
 import { difficultyInfo } from "../../utils/constants.js";
 import styles from "./StatsTable.module.scss";
 
+export default function StatsTable({ tableData }) {
+  return das;
+}
+
+
 const difficulties = difficultyInfo.order;
 export default function StatsTable({ rows }) {
   return (
     <table className={styles.table}>
       <tbody>
         <tr>
-          {" "}
           <th />
           {difficulties.map((diff) => (
             <th>{difficultyInfo.difficulties[diff].displayName}</th>

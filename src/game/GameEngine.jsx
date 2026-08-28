@@ -22,6 +22,8 @@ import { getDateFromUrl, getCodeFromUrl, getGameMode } from "../utils/url.js";
 
 import { useMessage } from "../providers/MessageProvider.jsx";
 
+import { modes, toGameKey } from "../utils/modes.js";
+
 const GameContext = createContext(null);
 export default function GameEngine({ children }) {
   const onMessage = useMessage();
@@ -43,133 +45,143 @@ export default function GameEngine({ children }) {
     loadResources();
   }, []);
 
-  // date
+  // date - not important
   const [date, setDate] = useState(null);
 
   // allData reducer
-  const [allData, allDataDispatch] = useReducer((state, action) => {
-    const newState = structuredClone(state);
-    switch (action.type) {
-      case "setDay": {
-        const gameMode = getGameMode();
-        newState.lastGameMode = gameMode;
+  const [allData, allDataDispatch] = useReducer(
+    (state, action) => {
+      const newState = structuredClone(state);
+      switch (action.type) {
+        case "setDay": {
+          const gameMode = getGameMode();
 
-        newState.days ??= {};
-        newState.pracs ??= {};
+          // init keys - only 1 used
+          const archiveKey = getDateFromUrl();
+          const dailyKey = new Date();
+          const pracKey = getCodeFromUrl();
 
-        let mode;
-        let gameSeed;
-        if (gameMode !== "practice") {
-          mode = newState.days;
-          gameSeed = formatToDays(date);
-        } else {
-          mode = newState.pracs;
-          gameSeed = getCodeFromUrl();
-        }
+          // init newState.data
+          const sets = (newState.data.sets ??= {});
+          newState.data.loaded ??= {};
 
-        mode[gameSeed] ??= {
-          unlockedDifficulties: [difficultyInfo.default],
-          games: {},
-          currentDifficulty: action.difficulty || difficultyInfo.default,
-        };
+          // date only used if gameMode !== practice
+          const date = gameMode === modes.archive ? archiveKey : dailyKey;
 
-        if (
-          !mode[gameSeed].unlockedDifficulties.includes(
-            mode[gameSeed].currentDifficulty,
-          )
-        )
-          throw new Error(
-            "difficulty:",
-            mode[gameSeed].currentDifficulty,
-            "is not unlocked",
-          );
+          // gameSeed: seed for generation
+          // gameString: key for localStorage
+          const gameSeed =
+            gameMode !== modes.practice ? formatToDays(date) : pracKey;
+          const gameString = toGameKey(gameMode, gameSeed);
 
-        if (gameMode !== "practice") {
-          newState.dateKey = gameSeed;
-        } else {
-          newState.pracCode = gameSeed;
-        }
+          // init currentDay (as reference)
+          const currentDay = (sets[gameString] ??= {
+            unlockedDifficulties: [difficultyInfo.default],
+            games: {},
+            currentDifficulty: action.difficulty || difficultyInfo.default,
+          });
+          newState.currentDay = currentDay;
 
-        newState.currentDay = mode[gameSeed];
-        const difficulty = newState.currentDay.currentDifficulty;
+          // difficulty
+          const difficulty = currentDay.currentDifficulty;
+          if (!currentDay.unlockedDifficulties.includes(difficulty))
+            throw new Error(`difficulty: ${difficulty} is not unlocked`);
 
-        const seed =
-          gameSeed * difficultyInfo.difficulties[difficulty].seedMult;
+          // init currentGame
+          if (!currentDay.games[difficulty]) {
+            let game;
 
-        if (!newState.currentDay.games[difficulty]) {
-          let game;
-          if (gameMode !== "practice") {
-            const dateKey = formatFromDays(newState.dateKey);
-            const dateString = `${dateKey.getFullYear()}-${String(
-              dateKey.getMonth() + 1,
-            ).padStart(2, "0")}-${String(dateKey.getDate()).padStart(2, "0")}`;
+            // seedMult & seed for MakeGame
+            const seedMult = difficultyInfo.difficulties[difficulty].seedMult;
+            const seed = gameSeed * seedMult;
 
-            const setGameDate = resources.dailys?.[dateString];
-            const setGame = setGameDate?.[difficulty];
-            if (setGame) {
-              game = setGame;
+            // set dailys check
+            if (gameMode !== modes.practice) {
+              const dateString = `${date.getFullYear()}-${String(
+                date.getMonth() + 1,
+              ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+              const setGameDate = resources.dailys?.[dateString];
+              const setGame = setGameDate?.[difficulty];
+              if (setGame) {
+                // set game if set daily found
+                game = setGame;
+              }
             }
+
+            // if no set daily or saved game found
+            game ??= makeGame(
+              seed,
+              difficultyInfo.difficulties[difficulty].steps,
+            );
+
+            const [start, end] = game;
+
+            currentDay.games[difficulty] = {
+              start: start,
+              end: end,
+              found: [],
+              currentPath: [],
+              guess: "",
+            };
           }
 
-          game ??= makeGame(
-            seed,
-            difficultyInfo.difficulties[difficulty].steps,
-          );
+          // set newState.data.loaded
+          newState.data.loaded.gameMode = gameMode;
+          newState.data.loaded.key = gameSeed;
 
-          const [start, end] = game;
-
-          newState.currentDay.games[difficulty] = {
-            start: start,
-            end: end,
-            found: [],
-            currentPath: [],
-            guess: "",
-          };
+          // set current game
+          newState.currentGame = currentDay.games[difficulty];
+          break;
         }
-
-        newState.currentGame = newState.currentDay.games[difficulty];
-        break;
+        case "setDifficulty":
+          if (newState.currentDay?.unlockedDifficulties.includes(action.value))
+            newState.currentDay.currentDifficulty = action.value;
+          break;
+        case "unlockDifficulty":
+          newState.currentDay.unlockedDifficulties.push(action.value);
+          break;
+        case "addGuess":
+          newState.currentGame.currentPath.push(action.value);
+          break;
+        case "removeGuess": {
+          const check = newState.currentGame.currentPath.pop();
+          if (action.check && check && action.check !== check)
+            throw new Error(
+              "action.check didn't match check.",
+              action.check,
+              "!==",
+              check,
+            );
+          break;
+        }
+        case "clearPath":
+          newState.currentGame.currentPath = [];
+          break;
+        case "foundPath":
+          newState.currentGame.found.push(action.value);
+          break;
+        case "setGuess":
+          newState.currentGame.guess = action.value;
+          break;
+        default: //Error
+          throw new Error("invalid action.type:", action.type);
+          break;
       }
-      case "setDifficulty":
-        if (newState.currentDay?.unlockedDifficulties.includes(action.value))
-          newState.currentDay.currentDifficulty = action.value;
-        break;
-      case "unlockDifficulty":
-        newState.currentDay.unlockedDifficulties.push(action.value);
-        break;
-      case "addGuess":
-        newState.currentGame.currentPath.push(action.value);
-        break;
-      case "removeGuess": {
-        const check = newState.currentGame.currentPath.pop();
-        if (action.check && check && action.check !== check)
-          throw new Error(
-            "action.check didn't match check.",
-            action.check,
-            "!==",
-            check,
-          );
-        break;
-      }
-      case "clearPath":
-        newState.currentGame.currentPath = [];
-        break;
-      case "foundPath":
-        newState.currentGame.found.push(action.value);
-        break;
-      case "setGuess":
-        newState.currentGame.guess = action.value;
-        break;
-      default: //Error
-        throw new Error("invalid action.type:", action.type);
-        break;
-    }
-    return newState;
-  }, getData());
+      return newState;
+    },
+    { data: getData() },
+  );
 
   useEffect(() => {
-    saveData(allData);
+    saveData(allData.data);
   }, [allData]);
+
+  useEffect(() => {
+    if (resources) {
+      allDataDispatch({ type: "setDay" });
+    }
+  }, [allData.currentDay?.currentDifficulty, resources, location.search]);
 
   function makeGame(seed, steps) {
     setSeed(seed);
@@ -299,20 +311,11 @@ export default function GameEngine({ children }) {
     setDifficulty: (value) => {
       allDataDispatch({ type: "setDifficulty", value });
     },
-    date,
+    key: allData?.data?.loaded?.key,
     keyHandler,
     clearPath,
+    gameMode: allData.data?.loaded?.gameMode,
   };
-
-  useEffect(() => {
-    setDate(new Date(getDateFromUrl() || Date.now()));
-  }, [resources, location.search]);
-
-  useEffect(() => {
-    if (resources) {
-      allDataDispatch({ type: "setDay" });
-    }
-  }, [date, allData.currentDay?.currentDifficulty]);
 
   return (
     <GameContext.Provider value={game}>

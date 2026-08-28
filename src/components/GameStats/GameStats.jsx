@@ -8,34 +8,35 @@ import {
   formatToDays,
   formatFromDays,
 } from "../../utils/date.js";
+import { toGameKey, modesDisplayName, modes } from "../../utils/modes.js";
 
-export default function GameStats({ date }) {
-  const stats = getData();
-  let currentSet;
-  let id;
-  const gameMode = stats.lastGameMode;
-  if (!date) {
-    if (!gameMode) return <div>No stats available</div>;
-    if (gameMode !== "practice") {
-      const key = stats.dateKey;
-      currentSet = stats.days?.[key] || {};
-      id = formatDate(formatFromDays(key));
-    } else {
-      const key = stats.pracCode;
-      currentSet = stats.pracs?.[key] || {};
-      id = key;
-    }
-  } else {
-    currentSet = stats.days?.[formatToDays(date)] || {};
-    id = formatDate(date);
-  }
+/*
+loaded: {gameMode: 'practice', key: 9827796562}
+sets: 
+  daily_20677: 
+    {unlockedDifficulties: Array(1), games: {…}, currentDifficulty: 'easy'} 
+  prac_9827796562: 
+    {unlockedDifficulties: Array(1), games: {…}, currentDifficulty: 'easy'}
+*/
 
-  const games = currentSet.games ? Object.entries(currentSet.games) : [];
+export default function GameStats({ gameData }) {
+  const data = getData();
+  const loaded = gameData ?? data.loaded;
+  const gameMode = loaded.gameMode;
+  const key = loaded.key;
+
+  if (!gameMode || !key) return <div>No stats available</div>;
+
+  const gameKey = toGameKey(gameMode, key);
+  const lastGame = data.sets[gameKey];
+
+  const games = lastGame.games ? Object.entries(lastGame.games) : [];
 
   return (
     <div className={styles.gameStatsBox}>
       <b>
-        {date ? "archive" : gameMode}: {id}
+        {modesDisplayName(gameMode)}:{" "}
+        {gameMode !== modes.practice ? formatDate(formatFromDays(key)) : key}
       </b>
       {games.map((pair, i) => {
         const paths = pair[1].found;
