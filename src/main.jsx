@@ -6,7 +6,7 @@ import MessageProvider from "./providers/MessageProvider.jsx";
 import SettingsProvider from "./providers/SettingsProvider.jsx";
 
 import "./index.css";
-import "./globals.css";
+import "./globals.scss";
 
 import App from "./App.jsx";
 

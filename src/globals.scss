@@ -1,0 +1,77 @@
+:root {
+  --error: #d007;
+  --error-colour: #d00;
+
+  --message: #ff07;
+  --message-colour: #333;
+}
+
+/* colour themes */
+
+/* dark */
+[data-dark-mode="true"] {
+  --background: #333;
+  --colour: #fff;
+
+  &[data-colour-scheme="default"] {
+    --accent: #38a;
+    --accent-colour: #fff;
+  }
+
+  &[data-colour-scheme="green"] {
+    --accent: #006d5b;
+    --accent-colour: #eee;
+  }
+
+  &[data-colour-scheme="gold"] {
+    --accent: #d4af37;
+    --accent-colour: #222;
+  }
+
+  &[data-colour-scheme="purple"] {
+    --accent: #a88bc4;
+    --accent-colour: #ddd;
+  }
+}
+
+/* light */
+[data-dark-mode="false"] {
+  --background: #fff;
+  --colour: #333;
+
+  &[data-colour-scheme="default"] {
+    --accent: #81c2da;
+    --accent-colour: #fff;
+  }
+
+  &[data-colour-scheme="green"] {
+    --accent: #7cbdb2;
+    --accent-colour: #333;
+  }
+
+  &[data-colour-scheme="gold"] {
+    --accent: #e1c872;
+    --accent-colour: #222;
+  }
+
+  &[data-colour-scheme="purple"] {
+    --accent: #c9b6da;
+    --accent-colour: #fff;
+  }
+}
+
+[data-font="default"] {
+  font-family: "default", Arial;
+}
+
+[data-font="fancy"] {
+  font-family: "fancy", Arial;
+}
+
+[data-font="easy"] {
+  font-family: "easy", Arial;
+}
+
+[data-font="comic"] {
+  font-family: "comic", Arial;
+}
