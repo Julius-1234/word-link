@@ -1,8 +1,6 @@
-import { formatFromDays } from "./date";
+import { formatFromDays, formatToDays } from "./date.js";
 import { archiveStart } from "./constants.js";
 import { modes } from "./modes.js";
-
-const msInDay = 24 * 60 * 60 * 1000;
 
 export const archiveParam = "archive";
 export const practiceParam = "practice";
@@ -13,8 +11,8 @@ export function getDateFromUrl() {
   if (!archiveValue) return null;
   const date = formatFromDays(archiveValue);
   if (date < archiveStart) throw new Error("Date is before archive start");
-  const now = Math.round(Date.now() / msInDay) * msInDay;
-  if (date > now) throw new Error("Date is in the future");
+  if (formatToDays(date) > formatToDays(new Date()))
+    throw new Error("Date is in the future");
   return date;
 }
 

@@ -1,8 +1,14 @@
 const msInDay = 24 * 60 * 60 * 1000;
 
 export function formatToDays(date) {
-  date = new Date(date).getTime();
-  return Math.floor(date / msInDay);
+  const dateObj = new Date(date);
+  return Math.floor(
+    Date.UTC(
+      dateObj.getFullYear(),
+      dateObj.getMonth(),
+      dateObj.getDate(),
+    ) / msInDay,
+  );
 }
 
 export function formatFromDays(ms) {
