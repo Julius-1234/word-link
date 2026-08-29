@@ -51,9 +51,9 @@ export default function Keyboard() {
       <div className={styles.keyboardRow}>{row("qwertyuiop")}</div>
       <div className={styles.keyboardRow}>{row(" asdfghjkl ")}</div>
       <div className={styles.keyboardRow}>
-        {!settings.other.switchKeys ? back : enter}
+        {!settings.switchKeys ? back : enter}
         {row("zxcvbnm")}
-        {!settings.other.switchKeys ? enter : back}
+        {!settings.switchKeys ? enter : back}
       </div>
     </div>
   );

@@ -8,15 +8,9 @@ export default function Settings() {
   const colourThemes = settingsInfo.themes;
   const fonts = settingsInfo.fonts;
 
-  const setSetting = (key, value, style = true) =>
+  const setSetting = (key, value) =>
     settings.setSettings((prev) => {
-      return {
-        ...prev,
-        [style ? "styles" : "other"]: {
-          ...prev[style ? "styles" : "other"],
-          [key]: value,
-        },
-      };
+      return { ...prev, [key]: value };
     });
 
   return (
@@ -33,10 +27,7 @@ export default function Settings() {
                   type="radio"
                   name="colourTheme"
                   value={theme}
-                  checked={
-                    (settings.settings.styles.colourScheme || "default") ===
-                    theme
-                  }
+                  checked={settings.settings.colourScheme === theme}
                   onChange={(e) => setSetting("colourScheme", theme)}
                 />
                 <div className={styles.radioPreview}>{theme}</div>
@@ -51,7 +42,7 @@ export default function Settings() {
             <input
               type="checkbox"
               onChange={(e) => setSetting("darkMode", e.target.checked)}
-              checked={settings.settings.styles.darkMode ?? true}
+              checked={settings.settings.darkMode}
             ></input>
           </label>
         </div>
@@ -65,9 +56,7 @@ export default function Settings() {
                   type="radio"
                   name="font"
                   value={font}
-                  checked={
-                    (settings.settings.styles.font || "default") === font
-                  }
+                  checked={settings.settings.font === font}
                   onChange={(e) => setSetting("font", font)}
                 />
                 <div className={styles.radioPreview}>{font}</div>
@@ -81,8 +70,8 @@ export default function Settings() {
           <label>
             <input
               type="checkbox"
-              onChange={(e) => setSetting("keyboard", e.target.checked, false)}
-              checked={settings.settings.other.keyboard ?? true}
+              onChange={(e) => setSetting("keyboard", e.target.checked)}
+              checked={settings.settings.keyboard}
             ></input>
           </label>
         </div>
@@ -93,10 +82,8 @@ export default function Settings() {
           <label>
             <input
               type="checkbox"
-              onChange={(e) =>
-                setSetting("switchKeys", e.target.checked, false)
-              }
-              checked={settings.settings.other.switchKeys ?? false}
+              onChange={(e) => setSetting("switchKeys", e.target.checked)}
+              checked={settings.settings.switchKeys}
             ></input>
           </label>
         </div>

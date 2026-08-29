@@ -13,7 +13,7 @@ export default function Content() {
       <GameSelect />
       <GameInfo />
       <Game />
-      {(settings.other.keyboard ?? true) && <Keyboard />}
+      {settings.keyboard && <Keyboard />}
     </>
   );
 }

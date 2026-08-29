@@ -6,19 +6,30 @@ import MessageDisplay from "../components/MessageDisplay/MessageDisplay.jsx";
 
 const SettingsContext = createContext(null);
 export default function SettingsProvider({ children }) {
-  const [settings, setSettings] = useState(
-    getSettings() || { styles: {}, other: {} },
-  );
+  const settingsTemplate = {
+    colourScheme: "default",
+    darkMode: true,
+    font: "default",
+    keyboard: true,
+    switchKeys: false,
+  };
+
+  const [settings, setSettings] = useState({
+    ...settingsTemplate,
+    ...getSettings(),
+  });
 
   useEffect(() => {
-    applyStyles();
+    applySettings();
     saveSettings(settings);
   }, [settings]);
 
-  const applyStyles = () => {
-    for (const key in settings.styles) {
-      document.documentElement.dataset[key] = settings.styles[key];
-    }
+  const applySettings = () => {
+    const root = document.documentElement;
+    root.dataset.colourScheme = settings.colourScheme;
+    root.dataset.darkMode = String(settings.darkMode);
+    console.log(String(settings.darkMode));
+    root.dataset.font = settings.font;
   };
 
   const settingsData = { settings, setSettings };
