@@ -1,31 +1,48 @@
-.gameInfoSelect {
+.dropDownWrapper {
+  width: 5em;
   color: var(--accent-colour);
-  font-size: 0.8em;
+  font-size: 0.9em;
   position: relative;
-  display: inline-block;
   user-select: none;
 }
 
-.gameInfoSelectOptions {
-  display: none;
+.dropDown {
   position: absolute;
-  width: 100%;
-}
-
-.gameInfoSelect:hover .gameInfoSelectOptions {
   display: flex;
   flex-direction: column;
+  width: fit-content;
 }
 
-.gameInfoSelectOption,
-.gameInfoSelectSelected {
+.dropDownOptions {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 0;
+}
+
+.dropDown:hover {
+  .dropDownOptions {
+    height: fit-content;
+    .dropDownOption:last-child {
+      border-radius: 0 0 var(--radius-normal) var(--radius-normal);
+    }
+  }
+  .dropDownSelected {
+    border-radius: var(--radius-normal) var(--radius-normal) 0 0;
+  }
+}
+
+.dropDownOption,
+.dropDownSelected {
   background: var(--accent);
   color: var(--accent-colour);
-  width: 100%;
-  padding: 2px;
   text-decoration: none;
+  padding: 0 2px;
+  &:hover {
+    filter: brightness(50%);
+  }
 }
 
-.gameInfoSelectOption:hover {
-  filter: brightness(50%);
+.dropDownSelected {
+  border-radius: var(--radius-normal);
 }

@@ -1,9 +1,12 @@
 .gameNav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--gap-normal);
   margin-top: 10px;
   .btn {
+    flex: 1 0 0;
     &.locked {
       filter: blur(1px) brightness(50%);
     }

@@ -3,7 +3,7 @@
   background: var(--accent);
   color: var(--accent-colour);
   padding: 0 5px;
-  border-radius: 3px;
+  border-radius: var(--radius-normal);
   &:active {
     background: var(--accent-colour);
     color: var(--accent);

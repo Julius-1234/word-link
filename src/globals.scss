@@ -1,9 +1,14 @@
 :root {
+  /* errors & messages */
   --error: #d007;
   --error-colour: #d00;
 
   --message: #ff07;
   --message-colour: #333;
+
+  /* sizes */
+  --gap-normal: 10px;
+  --radius-normal: 2px;
 }
 
 /* colour themes */

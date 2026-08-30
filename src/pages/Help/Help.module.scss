@@ -1,15 +1,14 @@
-.header1 {
-  font-size: 1.3em;
-}
-
-.header2 {
-  font-size: 1.2em;
-}
-
 .help {
   font-size: 0.9em;
-}
+  .header1 {
+    font-size: 1.3em;
+  }
+  ul {
+    font-size: 0.9em;
 
-.titleLink {
-  color: var(--accent-colour);
+    margin-left: 20px;
+  }
+  p {
+    margin: var(--gap-normal);
+  }
 }

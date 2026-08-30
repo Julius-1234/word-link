@@ -1,5 +1,8 @@
 .home {
+  box-sizing: border-box;
   height: 100%;
   display: grid;
   grid-template-rows: auto auto auto 1fr auto auto;
+  gap: var(--gap-normal);
+  padding: var(--gap-normal);
 }

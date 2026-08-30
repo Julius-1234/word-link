@@ -8,95 +8,50 @@ export default function Help() {
     <>
       <HomeLink />
       <div className={styles.help}>
-        <Title className={styles.header1}>Welcome!</Title>
-        <p>
-          Welcome to Word Link! This is a word game where you can modify words
-          in different ways to reach a target word. You can add letters, remove
-          letters, change letters, and even rearrange letters to reach the
-          target word. More details can be found in the "How to Play" section
-          below.
-        </p>
-        <p>
-          Created by Julius Williams. You can find the credits for this website{" "}
-          <Link to="/credits">here</Link>.
-        </p>
-        <Title className={styles.header2}>Why you should play this game</Title>
-        <p>
-          <small>
-            Feel free to skip this section if you just want to learn how to
-            play. But if you want to know why you should play this game, read
-            on!
-          </small>
-        </p>
-        <p>
-          There are lots of games out there that have similar gameplay to this
-          one, but none of them are quite like Word Link.
-          <p>
-            As we will explore in more detail later, this game has many unique
-            ways to modify words that set it apart from others. Not only does
-            this game combine the classic 'add letter', 'remove letter', and
-            'change letter' mechanics, but it also has the unique 'rearrange
-            letters' ability (more on that later).
-          </p>
-          <p>
-            This game not only has a daily challenge, but different tiers of
-            difficulty. This makes this game perfect for anyone. You can also
-            view your stats to see how you are doing, and even catch up on
-            missed daily challenges in the archive. There is also practice mode,
-            so you can continue to play even after you have completed the daily
-            challenge.
-          </p>
-        </p>
-        <Title className={styles.header2}>How to Play</Title>
+        <Title className={styles.header1}>How to play Word Link</Title>{" "}
         <p>
           The goal of this game is to reach the target word by modifying the
-          starting word. You can add letters, remove letters, change letters,
-          and rearrange letters to reach the target word. You can do this in as
-          many steps as you need, but each change must result in a valid word.
-        </p>
-        <p>
+          starting word to get to the end word. <br />
+          Every time you change the start word, it must result in a valid word.
           You can:
-          <ul>
-            <li>Add 1 letter to the word</li>
-            <li>Remove 1 letter from the word</li>
-            <li>Change 1 letter in the word</li>
-            <li>Rearrange the letters in the word</li>
-          </ul>
         </p>
+        <ul>
+          <li>Add a letter</li>
+          <li>Remove a letter</li>
+          <li>Change a letter</li>
+          <li>Rearrange the whole word</li>
+        </ul>
+        <br />
         <p>
-          Once you complete a path (i.e. get from the start word to the end
-          word), you unlock the next difficulty.
+          For example, if the starting word was cat, and the ending word was
+          tar, then
         </p>
-        <p>That's about it!</p>
-        <Title className={styles.header2}>Features</Title>
+        <p>cat &rarr; rat &rarr; rats &rarr; star &rarr; tar</p>
+        <p>However, this is not necessarily the shortest path.</p>
+        <p>cat &rarr; car &rarr; tar</p> <p>is also valid, and much shorter.</p>
+        <br />
         <p>
-          As mentioned earlier, this game offers several extra features to
-          enhance your experience. These features are all accessible from the{" "}
-          <Link to="/">home</Link> page.
-          <p>
-            <Title>Extra game modes</Title>
-            You can play extra game modes from the dropdown list in home. You
-            can play daily, practice, or archive.
-          </p>
-          <p>
-            <Title>
-              <Link to="/archive" className={styles.titleLink}>
-                archive
-              </Link>
-            </Title>
-            You can play games from previous days in the archive.
-          </p>
-          <p>
-            <Title>
-              <Link className={styles.titleLink} to="/stats">
-                stats
-              </Link>
-            </Title>
-            You can view your stats to see how you are doing. There are
-            practice, daily, and current game stats. Current game stats show you
-            all the paths you have found in the current game.
-          </p>
+          Once you find one path, you can double click the clear button in the
+          bottom right corner in home to re-start.
         </p>
+        <br />
+        <p>There are 3 difficulties for this game:</p>{" "}
+        <ul>
+          <li>easy</li>
+          <li>normal</li>
+          <li>hard</li>
+        </ul>
+        <br />
+        <p>
+          You can only progress to normal once you complete easy, and you can
+          only progress to hard once you complete normal.
+        </p>
+        <br />
+        <p>
+          Your stats and current game info are in <a href="/stats">history</a>{" "}
+          (bottom left in home). There are also practice and archive game modes.
+        </p>
+        <br />
         <p>
           If something doesn't make sense, try playing the game to see how it
           works!

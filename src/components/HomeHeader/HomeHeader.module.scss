@@ -9,11 +9,11 @@
 
 .homeHeaderNav {
   display: flex;
-  flex-direction: horizontal;
+  flex-direction: row;
 }
 
 .logo {
+  height: 40px;
   width: 100px;
-  height: auto;
   flex-shrink: 0;
 }
