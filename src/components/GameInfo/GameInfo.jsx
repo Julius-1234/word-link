@@ -33,10 +33,7 @@ export default function GameInfo() {
         <>
           <Btn onClick={copyURL}>Copy URL</Btn>
           <Btn>
-            <ConfirmSequence
-              sequence={["new prac", "confirm?"]}
-              func={newPrac}
-            />
+            <ConfirmSequence sequence={[["new prac"], ["confirm?", newPrac]]} />
           </Btn>
         </>
       )}

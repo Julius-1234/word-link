@@ -300,6 +300,10 @@ export default function GameEngine({ children }) {
     allDataDispatch({ type: "setGuess", value: "" });
   }
 
+  function clearWord() {
+    allDataDispatch({ type: "setGuess", value: "" });
+  }
+
   const game = {
     path: allData.currentGame?.currentPath,
     start: allData.currentGame?.start,
@@ -314,6 +318,7 @@ export default function GameEngine({ children }) {
     key: allData?.data?.loaded?.key,
     keyHandler,
     clearPath,
+    clearWord,
     gameMode: allData.data?.loaded?.gameMode,
   };
 
