@@ -1,6 +1,6 @@
 export const maxChars = 30;
 
-export const archiveStart = new Date("2025-07-29"); // temp YYMMDD
+export const archiveStart = new Date("2026-08-30"); // YYMMDD
 
 export const difficultyInfo = {
   order: ["easy", "medium", "hard"],

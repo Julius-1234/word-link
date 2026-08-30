@@ -2,7 +2,11 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 10px;
   margin: 20px 0;
   padding: 0 20px;
+}
+
+.timeAgo {
+  font-size: 0.8em;
 }

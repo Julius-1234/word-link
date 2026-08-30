@@ -41,7 +41,9 @@ export default function GameInfo() {
         <div>{formatDate(formatFromDays(key))} </div>
       )}
       {gameMode === modes.archive && (
-        <div>{`(${timeAgo(formatFromDays(key))})`}</div>
+        <div
+          className={styles.timeAgo}
+        >{`(${timeAgo(formatFromDays(key))})`}</div>
       )}
     </div>
   );

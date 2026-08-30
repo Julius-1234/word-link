@@ -12,7 +12,7 @@ export default function PracStats() {
           reduceFunc={(old, value) => old + value.found.length}
         />
         <StatsRow
-          title="total pracs with +1 paths"
+          title="total pracs with 1+ paths"
           keyFilter={(key) => isPracFromGameKey(key)}
           reduceFunc={(old, value) => old + Math.min(value.found.length, 1)}
         />
