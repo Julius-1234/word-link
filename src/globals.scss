@@ -9,7 +9,8 @@
 /* colour themes */
 
 /* dark */
-[data-dark-mode="true"] {
+[data-dark-mode="true"],
+[data-dark-mode="true"] * {
   --background: #333;
   --colour: #fff;
 
@@ -35,7 +36,8 @@
 }
 
 /* light */
-[data-dark-mode="false"] {
+[data-dark-mode="false"],
+[data-dark-mode="false"] * {
   --background: #fff;
   --colour: #333;
 

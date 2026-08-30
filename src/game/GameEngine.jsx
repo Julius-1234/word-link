@@ -257,8 +257,6 @@ export default function GameEngine({ children }) {
         throw new Error("path already found"); // already found
       // if here then found correct path
       allDataDispatch({ type: "foundPath", value: [...currentPath] });
-      allDataDispatch({ type: "clearPath" });
-      allDataDispatch({ type: "setGuess", value: "" });
       const difficulty = allData.currentDay.currentDifficulty;
       const next = difficultyInfo.difficulties[difficulty].next;
       onMessage({

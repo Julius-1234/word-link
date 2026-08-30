@@ -10,15 +10,6 @@ import {
 } from "../../utils/date.js";
 import { toGameKey, modesDisplayName, modes } from "../../utils/modes.js";
 
-/*
-loaded: {gameMode: 'practice', key: 9827796562}
-sets: 
-  daily_20677: 
-    {unlockedDifficulties: Array(1), games: {…}, currentDifficulty: 'easy'} 
-  prac_9827796562: 
-    {unlockedDifficulties: Array(1), games: {…}, currentDifficulty: 'easy'}
-*/
-
 export default function GameStats({ gameData }) {
   const data = getData();
   const loaded = gameData ?? data.loaded;

@@ -9,7 +9,7 @@ export default function HomeFooter() {
 
   return (
     <footer className={styles.homeFooter}>
-      <Link to="/stats">stats</Link>
+      <Link to="/stats">history</Link>
       <ConfirmSequence
         sequence={[
           ["clear", clearWord],
