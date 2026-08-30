@@ -28,7 +28,6 @@ export default function SettingsProvider({ children }) {
     const root = document.documentElement;
     root.dataset.colourScheme = settings.colourScheme;
     root.dataset.darkMode = String(settings.darkMode);
-    console.log(String(settings.darkMode));
     root.dataset.font = settings.font;
   };
 
