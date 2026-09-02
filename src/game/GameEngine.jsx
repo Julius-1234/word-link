@@ -192,6 +192,9 @@ export default function GameEngine({ children }) {
 
     const endPool = startLink[steps - 1];
     const endIndex = Math.floor(rand() * endPool.length);
+
+    console.log(startWord, startLink, endPool, endIndex);
+
     const endWord = endPool[endIndex];
 
     return [startWord, endWord];

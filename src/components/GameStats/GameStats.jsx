@@ -22,6 +22,37 @@ export default function GameStats({ gameData }) {
   const lastGame = data.sets[gameKey];
 
   const games = lastGame.games ? Object.entries(lastGame.games) : [];
+  const gameEls = games.map((pair, i) => {
+    const paths = pair[1].found.sort((a, b) => a.length - b.length);
+    if (paths.length === 0) return null;
+
+    const pathEls = paths.map((path, i) => (
+      <div className={styles.gameStatsPath} key={i}>
+        <div className={styles.gameStatsPathStart}>{pair[1].start}</div>
+        {path.map((word, i) => (
+          <div className={styles.gameStatsPathWord} key={i}>
+            {word}
+          </div>
+        ))}
+        <div className={styles.gameStatsPathEnd}>{pair[1].end}</div>
+      </div>
+    ));
+
+    return (
+      <div className={styles.gameStatsBox} key={i}>
+        <div className={styles.gameStatsTitle}>
+          {`${difficultyInfo.difficulties[pair[0]].displayName} (best: ${paths[0].length + 1} steps)`}
+          <br />
+          <b>
+            {pair[1].start} &rarr; {pair[1].end}
+          </b>
+        </div>
+        <ShadowScrollBox className={styles.gameStatsInfo}>
+          {pathEls}
+        </ShadowScrollBox>
+      </div>
+    );
+  });
 
   return (
     <div className={styles.gameStatsBox}>
@@ -29,38 +60,7 @@ export default function GameStats({ gameData }) {
         {modesDisplayName(gameMode)}:{" "}
         {gameMode !== modes.practice ? formatDate(formatFromDays(key)) : key}
       </b>
-      {games.map((pair, i) => {
-        const paths = pair[1].found;
-        if (paths.length === 0) return;
-        return (
-          <div className={styles.gameStatsBox} key={i}>
-            <div className={styles.gameStatsTitle}>
-              {`${difficultyInfo.difficulties[pair[0]].displayName} (${paths.length})`}
-              <br />
-              <b>
-                {pair[1].start} &rarr; {pair[1].end}
-              </b>
-            </div>
-            <ShadowScrollBox className={styles.gameStatsInfo}>
-              {paths
-                .sort((a, b) => a.length - b.length)
-                .map((path, i) => (
-                  <div className={styles.gameStatsPath} key={i}>
-                    <div className={styles.gameStatsPathStart}>
-                      {pair[1].start}
-                    </div>
-                    {path.map((word, i) => (
-                      <div className={styles.gameStatsPathWord} key={i}>
-                        {word}
-                      </div>
-                    ))}
-                    <div className={styles.gameStatsPathEnd}>{pair[1].end}</div>
-                  </div>
-                ))}
-            </ShadowScrollBox>
-          </div>
-        );
-      })}
+      {gameEls}
     </div>
   );
 }
