@@ -24,3 +24,12 @@ export function getSettings() {
 export function saveSettings(data) {
   localStorage.setItem("settings", btoa(JSON.stringify(data)));
 }
+
+export function loadLastUpdate() {
+  let data = localStorage.getItem("lastUpdate");
+  return Number(data) || 0;
+}
+
+export function saveLastUpdate(update) {
+  localStorage.setItem("lastUpdate", String(update));
+}

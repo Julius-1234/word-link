@@ -1,0 +1,48 @@
+.updateInfoWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px);
+}
+
+.updateInfo {
+  font-size: 1.2em;
+  background: var(--background);
+  width: fit-content;
+  outline: solid var(--accent-colour) 5px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.updates {
+  margin: var(--gap-normal) 0;
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-normal);
+}
+
+.update {
+  background: var(--accent);
+  color: var(--accent-colour);
+  border-radius: var(--radius-normal);
+  padding: var(--gap-normal);
+}
+
+.title {
+  font-size: 1.1em;
+}

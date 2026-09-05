@@ -5,10 +5,12 @@ import Archive from "./pages/Archive/Archive.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
 import Help from "./pages/Help/Help.jsx";
 import { Route, Routes } from "react-router-dom";
+import UpdateInfo from "./components/UpdateInfo/UpdateInfo.jsx";
 
 export default function App() {
   return (
     <>
+      <UpdateInfo />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/stats" element={<Stats />} />
