@@ -6,8 +6,15 @@ import Settings from "./pages/Settings/Settings.jsx";
 import Help from "./pages/Help/Help.jsx";
 import { Route, Routes } from "react-router-dom";
 import UpdateInfo from "./components/UpdateInfo/UpdateInfo.jsx";
+import { useEffect } from "react";
 
 export default function App() {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      window.location.reload;
+    }, 3600_000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <UpdateInfo />

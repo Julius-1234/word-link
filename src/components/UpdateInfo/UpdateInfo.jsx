@@ -20,14 +20,18 @@ export default function UpdateInfo() {
 
   useEffect(() => {
     if (!info) return;
+    if (lastUpdateSeen === 0) {
+      saveLastUpdate(info.updates.length + 1);
+      return;
+    }
     const updates = info.updates;
-    const newUpdates = updates.slice(lastUpdateSeen);
-    setUpdateMessages(() => newUpdates.flat());
+    const newUpdates = updates.slice(lastUpdateSeen - 1);
+    setUpdateMessages(newUpdates.flat());
   }, [info]);
 
   const close = () => {
     setIsOpen(false);
-    saveLastUpdate(info.updates.length);
+    saveLastUpdate(info.updates.length + 1);
   };
 
   return createPortal(
