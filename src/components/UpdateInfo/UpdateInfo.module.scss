@@ -1,9 +1,10 @@
 .updateInfoWrapper {
+  --margin: 10px;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: var(--margin);
+  left: var(--margin);
+  right: var(--margin);
+  bottom: var(--margin);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -17,7 +18,6 @@
   width: fit-content;
   outline: solid var(--accent-colour) 5px;
   padding: 10px;
-  margin: 10px;
   display: flex;
   flex-direction: column;
   max-height: 100%;
