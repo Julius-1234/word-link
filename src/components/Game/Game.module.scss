@@ -13,14 +13,16 @@
   padding: 10px;
   height: 1em;
   line-height: 1em;
-  width: 100%;
+  align-self: stretch;
+  overflow-y: hidden;
+  overflow-x: auto;
+  min-width: 0;
 }
 
 .gameBox {
   text-align: center;
   margin-top: 20px;
   user-select: none;
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;

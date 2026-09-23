@@ -1,0 +1,8 @@
+.content {
+  width: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  gap: var(--gap-normal);
+}

@@ -47,7 +47,9 @@ export default function UpdateInfo() {
                 </div>
               ))}
             </ShadowScrollBox>
-            <Btn onClick={close}>Close</Btn>
+            <Btn className={styles.close} onClick={close}>
+              Close
+            </Btn>
           </div>
         </div>
       ) : null}

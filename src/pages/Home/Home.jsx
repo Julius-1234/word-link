@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import HomeHeader from "../../components/HomeHeader/HomeHeader.jsx";
 import Content from "../../components/Content/Content.jsx";
 import GameEngine from "../../game/GameEngine.jsx";

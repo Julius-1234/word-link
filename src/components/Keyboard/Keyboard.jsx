@@ -7,52 +7,58 @@ import { useGame } from "../../game/GameEngine.jsx";
 export default function Keyboard() {
   const { settings } = useSettings();
   const { keyHandler } = useGame();
-  const row = (keys) => {
-    return keys.split("").map((key, i) => {
-      if (key === " ")
-        return <div key={i} className={styles.keyboardGap}></div>;
+
+  const Key = ({ value, mapKey, handler, className }) => {
+    return (
+      <Btn key={mapKey} onMouseDown={handler} className={className}>
+        {value}
+      </Btn>
+    );
+  };
+
+  const Row = (keys) => {
+    return keys.split("").map((value, i) => {
+      if (value === " ")
+        return <Key i={i} className={styles.keyboardGap}></Key>;
       return (
-        <Btn
-          key={key}
-          onMouseDown={() => {
-            keyHandler(key);
+        <Key
+          makeKey={value}
+          handler={() => {
+            keyHandler(value);
           }}
-        >
-          {key}
-        </Btn>
+          value={value}
+        />
       );
     });
   };
 
   const back = (
-    <Btn
+    <Key
       className={styles.keyboardBig}
-      onMouseDown={() => {
+      handler={() => {
         keyHandler("backspace");
       }}
-    >
-      {symbols.keyBack}
-    </Btn>
+      value={symbols.keyBack}
+    />
   );
 
   const enter = (
-    <Btn
+    <Key
       className={styles.keyboardBig}
-      onMouseDown={() => {
+      handler={() => {
         keyHandler("enter");
       }}
-    >
-      {symbols.keyEnter}
-    </Btn>
+      value={symbols.keyEnter}
+    />
   );
 
   return (
     <div className={styles.keyboard}>
-      <div className={styles.keyboardRow}>{row("qwertyuiop")}</div>
-      <div className={styles.keyboardRow}>{row(" asdfghjkl ")}</div>
+      <div className={styles.keyboardRow}>{Row("qwertyuiop")}</div>
+      <div className={styles.keyboardRow}>{Row(" asdfghjkl ")}</div>
       <div className={styles.keyboardRow}>
         {!settings.switchKeys ? back : enter}
-        {row("zxcvbnm")}
+        {Row("zxcvbnm")}
         {!settings.switchKeys ? enter : back}
       </div>
     </div>

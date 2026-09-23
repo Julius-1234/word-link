@@ -1,6 +1,11 @@
 {
   "updates": [
     ["Update info system created (this)", "changed generation dictionary"],
-    ["changed generation dictionary"]
+    ["changed generation dictionary"],
+    [
+      "added steps counter and a target number of steps (although you can go over)",
+      "various bugfixes",
+      "updated generation dictionary"
+    ]
   ]
 }

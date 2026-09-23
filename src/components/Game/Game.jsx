@@ -19,7 +19,7 @@ export default function Game() {
         {words}
       </ShadowScrollBox>
       {last}
-      <div className={styles.gameInput}>{guess}</div>
+      <div className={`${styles.gameInput} scrollbar-styles`}>{guess}</div>
       <div className={styles.gameEndWord}>{end}</div>
     </div>
   );

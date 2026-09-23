@@ -1,10 +1,12 @@
 .radioPreview {
   color: var(--accent-colour);
   background: var(--accent);
-  padding: 5px;
+  padding: 2px;
   border: solid var(--accent-colour) 2px;
   border-radius: 2px;
   user-select: none;
+  height: 100%;
+  line-height: 1.5;
 }
 
 .radioSetting {
@@ -35,9 +37,9 @@ input[type="checkbox"] {
 input[type="checkbox"]::before {
   content: "";
   position: absolute;
+  height: calc(100% - 2px);
   top: 1px;
   left: 1px;
-  bottom: 1px;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
   background: var(--accent-colour);

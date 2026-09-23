@@ -234,20 +234,19 @@ export default function GameEngine({ children }) {
   }, [resources, allData.currentGame]);
 
   function makeGuess(input) {
-    if (!input) throw new Error("enter some text first");
+    if (!input) throw new Error("enter some text first"); // no text
     const currentPath = allData.currentGame.currentPath;
     if (!resources.validation.includes(input))
       throw new Error("not in word list"); // not a word
     if (currentPath.includes(input)) throw new Error("already used"); // already used
     if (allData.currentGame.start === input)
-      throw new Error("that is the start word"); // cannot use start word
+      throw new Error("that's the start word"); // cannot use start word
     const last = [...currentPath].at(-1) || allData.currentGame.start;
     const changeTypes = [];
     for (const change of Object.keys(changes)) {
       if (changes[change](last, input)) changeTypes.push(change);
     }
-    if (changeTypes.length === 0)
-      throw new Error("no valid change from previous word"); // no valid change
+    if (changeTypes.length === 0) throw new Error("no valid change"); // no valid change
 
     if (input === allData.currentGame.end) {
       if (
@@ -268,7 +267,7 @@ export default function GameEngine({ children }) {
       if (next && !allData.currentDay.unlockedDifficulties.includes(next)) {
         allDataDispatch({ type: "unlockDifficulty", value: next });
         onMessage({
-          message: `new difficulty unlocked: ${next}`,
+          message: `new difficulty unlocked: ${difficultyInfo.difficulties[next].displayName}`,
           timeStamp: Date.now(),
           type: "message",
         });
