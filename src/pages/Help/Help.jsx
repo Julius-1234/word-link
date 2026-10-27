@@ -1,7 +1,6 @@
 import HomeLink from "../../components/HomeLink/HomeLink.jsx";
 import Title from "../../components/Title/Title.jsx";
 import styles from "./Help.module.scss";
-import { Link } from "react-router-dom";
 
 export default function Help() {
   return (
@@ -21,6 +20,7 @@ export default function Help() {
           <li>Change a letter</li>
           <li>Rearrange the whole word</li>
         </ul>
+        <p>(Note: you can press backspace to go back a word)</p>
         <br />
         <p>
           For example, if the starting word was cat, and the ending word was
@@ -37,9 +37,9 @@ export default function Help() {
         <br />
         <p>There are 3 difficulties for this game:</p>{" "}
         <ul>
-          <li>easy</li>
-          <li>normal</li>
-          <li>hard</li>
+          <li>easy (can be completed in 3 or less steps)</li>
+          <li>normal (5 or less)</li>
+          <li>hard (8 or less)</li>
         </ul>
         <br />
         <p>

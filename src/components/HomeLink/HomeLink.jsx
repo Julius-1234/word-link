@@ -4,11 +4,11 @@ import styles from "./HomeLink.module.scss";
 
 import { getData } from "../../utils/storage.js";
 
-import { formatToDays } from "../../utils/date.js";
-
 import { modes } from "../../utils/modes.js";
 
 import { toQueryString } from "../../utils/url.js";
+
+import Btn from "../Btn/Btn.jsx";
 
 export default function HomeLink() {
   const data = getData();
@@ -19,12 +19,12 @@ export default function HomeLink() {
 
   const search =
     gameMode === modes.archive || gameMode === modes.practice
-      ? toQueryString(gameMode, loaded.key)
+      ? toQueryString(gameMode, key)
       : null;
 
   return (
-    <div className={styles.nav}>
+    <Btn className={styles.nav}>
       <Link to={{ pathname: "/", search }}>&#x276E; home</Link>
-    </div>
+    </Btn>
   );
 }

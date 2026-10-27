@@ -10,9 +10,17 @@ export default function MessageProvider({ children }) {
       setMessages((prev) => prev.slice(0, -1));
     }, 2000);
   }
+  function onMessage(message, type) {
+    addMessage({
+      message: message,
+      timeStamp: Date.now(),
+      type: type,
+    });
+  }
+
   const [messages, setMessages] = useState([]);
   return (
-    <MessageContext.Provider value={addMessage}>
+    <MessageContext.Provider value={onMessage}>
       <MessageDisplay data={messages}></MessageDisplay>
       {children}
     </MessageContext.Provider>

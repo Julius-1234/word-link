@@ -6,6 +6,7 @@
       "added steps counter and a target number of steps (although you can go over)",
       "various bugfixes",
       "updated generation dictionary"
-    ]
+    ],
+    ["small stylistic changes"]
   ]
 }

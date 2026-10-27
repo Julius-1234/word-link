@@ -4,6 +4,9 @@
   color: var(--accent-colour);
   padding: 0 5px;
   border-radius: var(--radius-normal);
+  a {
+    color: var(--accent-colour);
+  }
   &:active {
     background: var(--accent-colour);
     color: var(--accent);

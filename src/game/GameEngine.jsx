@@ -1,10 +1,8 @@
 import {
   useState,
   useEffect,
-  useCallback,
   createContext,
   useContext,
-  useRef,
   useReducer,
 } from "react";
 
@@ -12,11 +10,11 @@ import { useLocation } from "react-router-dom";
 
 import { maxChars, difficultyInfo, changes } from "../utils/constants.js";
 
-import { setSeed, rand, shuffle } from "../utils/random.js";
+import { setSeed, rand } from "../utils/random.js";
 
 import { getData, saveData } from "../utils/storage.js";
 
-import { formatFromDays, formatToDays } from "../utils/date.js";
+import { formatToDays } from "../utils/date.js";
 
 import { getDateFromUrl, getCodeFromUrl, getGameMode } from "../utils/url.js";
 
@@ -137,6 +135,11 @@ export default function GameEngine({ children }) {
         case "setDifficulty":
           if (newState.currentDay?.unlockedDifficulties.includes(action.value))
             newState.currentDay.currentDifficulty = action.value;
+          else
+            onMessage(
+              `${difficultyInfo.difficulties[action.value]?.displayName} is locked.`,
+              "error",
+            );
           break;
         case "unlockDifficulty":
           newState.currentDay.unlockedDifficulties.push(action.value);
@@ -190,7 +193,14 @@ export default function GameEngine({ children }) {
     const startWord = startPool[startIndex];
     const startLink = resources.generation[startWord];
 
-    const endPool = startLink[steps - 1];
+    let endPool = startLink[steps - 1];
+    if (!endPool || endPool.length === 0) {
+      endPool = startLink.at(-1);
+      console.error(
+        `Steps too long.\nstartWord: ${startWord}\nsteps: ${steps}\nstartLink.length: ${startLink.length}`,
+      );
+    }
+
     const endIndex = Math.floor(rand() * endPool.length);
 
     const endWord = endPool[endIndex];
@@ -206,11 +216,7 @@ export default function GameEngine({ children }) {
       try {
         makeGuess(allData.currentGame.guess);
       } catch (e) {
-        onMessage({
-          message: e.message,
-          timeStamp: Date.now(),
-          type: "error",
-        });
+        onMessage(e.message, "error");
       }
     } else if (key === "backspace") backspace();
     else if (/^[a-z]$/.test(key)) {
@@ -259,18 +265,13 @@ export default function GameEngine({ children }) {
       allDataDispatch({ type: "foundPath", value: [...currentPath] });
       const difficulty = allData.currentDay.currentDifficulty;
       const next = difficultyInfo.difficulties[difficulty].next;
-      onMessage({
-        message: "well done!",
-        timeStamp: Date.now(),
-        type: "message",
-      });
+      onMessage("well done!", "message");
       if (next && !allData.currentDay.unlockedDifficulties.includes(next)) {
         allDataDispatch({ type: "unlockDifficulty", value: next });
-        onMessage({
-          message: `new difficulty unlocked: ${difficultyInfo.difficulties[next].displayName}`,
-          timeStamp: Date.now(),
-          type: "message",
-        });
+        onMessage(
+          `new difficulty unlocked: ${difficultyInfo.difficulties[next].displayName}`,
+          "message",
+        );
       }
     } else {
       allDataDispatch({ type: "addGuess", value: input });

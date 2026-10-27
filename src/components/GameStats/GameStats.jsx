@@ -28,6 +28,7 @@ export default function GameStats({ gameData }) {
 
     const pathEls = paths.map((path, i) => (
       <div className={styles.gameStatsPath} key={i}>
+        <div className={styles.gameStatsPathLength}>{path.length + 1}</div>
         <div className={styles.gameStatsPathStart}>{pair[1].start}</div>
         {path.map((word, i) => (
           <div className={styles.gameStatsPathWord} key={i}>

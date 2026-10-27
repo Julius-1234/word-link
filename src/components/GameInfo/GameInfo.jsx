@@ -16,11 +16,7 @@ export default function GameInfo() {
   const onMessage = useMessage();
   const copyURL = () => {
     navigator.clipboard.writeText(location.href);
-    onMessage({
-      message: "copied",
-      timeStamp: Date.now(),
-      type: "message",
-    });
+    onMessage("copied", "message");
   };
   const newPrac = () => {
     const newCode = newPracticeCode();
