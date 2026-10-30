@@ -88,7 +88,7 @@ export default function GameEngine({ children }) {
           let steps = difficultyInfo.difficulties[difficulty].steps;
 
           // init currentGame
-          if (!currentDay.games[difficulty] || true) {
+          if (!currentDay.games[difficulty]) {
             let game;
 
             // seedMult & seed for MakeGame
