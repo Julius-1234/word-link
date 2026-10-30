@@ -86,6 +86,7 @@ export default function GameEngine({ children }) {
             throw new Error(`difficulty: ${difficulty} is not unlocked`);
 
           let steps = difficultyInfo.difficulties[difficulty].steps;
+
           // init currentGame
           if (!currentDay.games[difficulty]) {
             let game;
@@ -127,6 +128,10 @@ export default function GameEngine({ children }) {
           // set current game
           newState.currentGame = currentDay.games[difficulty];
           newState.currentGame.steps ??= steps;
+
+          if (newState.currentGame.end == 4) {
+            newState.currentGame.end = "treat";
+          }
 
           // set newState.data.loaded
           newState.data.loaded.gameMode = gameMode;
