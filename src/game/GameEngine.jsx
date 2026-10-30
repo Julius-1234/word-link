@@ -85,6 +85,7 @@ export default function GameEngine({ children }) {
           if (!currentDay.unlockedDifficulties.includes(difficulty))
             throw new Error(`difficulty: ${difficulty} is not unlocked`);
 
+          let steps = difficultyInfo.difficulties[difficulty].steps;
           // init currentGame
           if (!currentDay.games[difficulty]) {
             let game;
@@ -103,15 +104,13 @@ export default function GameEngine({ children }) {
               const setGame = setGameDate?.[difficulty];
               if (setGame) {
                 // set game if set daily found
-                game = setGame;
+                game = setGame[0];
+                steps = setGame[1];
               }
             }
 
             // if no set daily or saved game found
-            game ??= makeGame(
-              seed,
-              difficultyInfo.difficulties[difficulty].steps,
-            );
+            game ??= makeGame(seed, steps);
 
             const [start, end] = game;
 
@@ -121,12 +120,18 @@ export default function GameEngine({ children }) {
               found: [],
               currentPath: [],
               guess: "",
+              steps: steps,
             };
           }
+
+          // set current game
+          newState.currentGame = currentDay.games[difficulty];
+          newState.currentGame.steps ??= steps;
 
           // set newState.data.loaded
           newState.data.loaded.gameMode = gameMode;
           newState.data.loaded.key = gameSeed;
+          newState.data.loaded.steps = steps;
 
           // set current game
           newState.currentGame = currentDay.games[difficulty];
@@ -137,7 +142,7 @@ export default function GameEngine({ children }) {
             newState.currentDay.currentDifficulty = action.value;
           else
             onMessage(
-              `${difficultyInfo.difficulties[action.value]?.displayName} is locked.`,
+              `${difficultyInfo.difficulties[action.value]?.displayName} mode is locked.`,
               "error",
             );
           break;
@@ -264,7 +269,7 @@ export default function GameEngine({ children }) {
       // if here then found correct path
       allDataDispatch({ type: "foundPath", value: [...currentPath] });
       const difficulty = allData.currentDay.currentDifficulty;
-      const next = difficultyInfo.difficulties[difficulty].next;
+      const next = difficultyInfo.next(difficulty);
       onMessage("well done!", "message");
       if (next && !allData.currentDay.unlockedDifficulties.includes(next)) {
         allDataDispatch({ type: "unlockDifficulty", value: next });
@@ -310,7 +315,6 @@ export default function GameEngine({ children }) {
     guess: allData.currentGame?.guess,
     difficulty: allData.currentDay?.currentDifficulty,
     unlockedDifficulties: allData.currentDay?.unlockedDifficulties,
-    difficultyInfo,
     setDifficulty: (value) => {
       allDataDispatch({ type: "setDifficulty", value });
     },
@@ -319,6 +323,7 @@ export default function GameEngine({ children }) {
     clearPath,
     clearWord,
     gameMode: allData.data?.loaded?.gameMode,
+    steps: allData.currentGame?.steps,
   };
 
   return (

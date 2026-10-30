@@ -4,6 +4,11 @@ export const archiveStart = new Date("2026-08-30"); // YYMMDD
 
 export const difficultyInfo = {
   order: ["easy", "medium", "hard"],
+  next(key) {
+    const i = this.order.indexOf(key) + 1;
+    if (i >= this.order.length) return undefined;
+    return this.order[i];
+  },
   difficulties: {
     easy: {
       steps: 3,
@@ -26,12 +31,6 @@ export const difficultyInfo = {
   },
 };
 difficultyInfo.default = difficultyInfo.order[0];
-for (const difficulty of Object.entries(difficultyInfo.difficulties)) {
-  const nextIndex = difficultyInfo.order.indexOf(difficulty[0]);
-  if (nextIndex === -1) continue;
-  const next = difficultyInfo.order[nextIndex + 1];
-  difficulty[1].next = next ? next : null;
-}
 
 export const changes = {
   plus: (start, end) => {

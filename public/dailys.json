@@ -1,19 +1,19 @@
 {
   "2027-01-01": {
-    "easy": ["new", "year"]
+    "easy": [["new", "year"], 3]
   },
   "2026-08-08": {
-    "medium": ["word", "link"]
+    "medium": [["word", "link"], 5]
   },
   "2026-12-26": {
-    "medium": ["snow", "man"]
+    "medium": [["snow", "man"], 5]
   },
   "2027-03-28": {
-    "hard": ["bun", "bunny"]
+    "hard": [["bun", "bunny"], 8]
   },
   "2026-10-31": {
-    "easy": ["cat", "candy"],
-    "medium": ["ghost", "boo"],
-    "hard": ["trick", "treat"]
+    "easy": [["trick", "treat"], 4],
+    "medium": [["ghost", "boo"], 5],
+    "hard": [["stone", "casket"], 8]
   }
 }
