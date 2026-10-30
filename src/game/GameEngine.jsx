@@ -88,7 +88,7 @@ export default function GameEngine({ children }) {
           let steps = difficultyInfo.difficulties[difficulty].steps;
 
           // init currentGame
-          if (!currentDay.games[difficulty]) {
+          if (!currentDay.games[difficulty] || true) {
             let game;
 
             // seedMult & seed for MakeGame
@@ -128,10 +128,6 @@ export default function GameEngine({ children }) {
           // set current game
           newState.currentGame = currentDay.games[difficulty];
           newState.currentGame.steps ??= steps;
-
-          if (newState.currentGame.end == 4) {
-            newState.currentGame.end = "treat";
-          }
 
           // set newState.data.loaded
           newState.data.loaded.gameMode = gameMode;
